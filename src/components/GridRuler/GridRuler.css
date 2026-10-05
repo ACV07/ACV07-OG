@@ -1,0 +1,35 @@
+.grid-ruler-wrapper {
+  position: fixed;
+  inset: 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.grid-ruler-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-color);
+}
+
+.left-line {
+  left: 2rem;
+}
+
+.center-line {
+  left: 50%;
+}
+
+.right-line {
+  right: 2rem;
+}
+
+@media (max-width: 900px) {
+  .center-line {
+    display: none;
+  }
+}

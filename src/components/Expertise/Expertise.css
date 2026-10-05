@@ -1,0 +1,155 @@
+.editorial-expertise {
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-primary);
+}
+
+/* KPI Matrix (GertiX Inspired) */
+.kpi-matrix-wrapper {
+  margin-bottom: 4rem;
+  border: 1px solid var(--border-color);
+}
+
+.kpi-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.kpi-matrix-card {
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--border-color);
+  background: transparent;
+  transition: background var(--transition-fast);
+}
+
+.kpi-matrix-card:last-child {
+  border-right: none;
+}
+
+.kpi-matrix-card:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.kpi-val {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.kpi-matrix-card:hover .kpi-val {
+  transform: scale(1.08);
+  color: var(--accent-orange);
+}
+
+.kpi-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Technical Index Grid */
+.expertise-index-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.expertise-index-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 2.5rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.expertise-index-card:hover {
+  border-color: var(--accent-amber-border);
+  transform: translateY(-3px);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.domain-num {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+.domain-title {
+  font-family: var(--font-editorial);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.domain-sub {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.domain-summary {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.capabilities-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .kpi-matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kpi-matrix-card {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .kpi-matrix-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .expertise-index-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .kpi-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-matrix-card {
+    border-right: none;
+  }
+}

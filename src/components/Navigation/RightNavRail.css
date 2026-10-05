@@ -1,0 +1,271 @@
+/* Liquid Glass Navigation Rail Root Container */
+.liquid-glass-rail-root {
+  position: fixed;
+  right: clamp(1rem, 2.2vw, 2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.liquid-glass-rail-root.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Outer Liquid Glass Capsule Pill */
+.liquid-glass-rail-container {
+  --rail-stride: 52px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px;
+  background: rgba(14, 16, 20, 0.55);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 40px;
+  box-shadow: 
+    0 12px 36px rgba(0, 0, 0, 0.75),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Central Axis Line & Connecting Dots */
+.rail-connecting-axis {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.axis-node-dot {
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.axis-node-dot.is-active-dot {
+  background: var(--accent-orange, #FF4D00);
+  box-shadow: 0 0 6px var(--accent-orange, #FF4D00);
+}
+
+/* Single Moving Liquid Glass Lens Highlight */
+.liquid-glass-lens {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.14) 100%);
+  backdrop-filter: blur(8px) contrast(110%);
+  -webkit-backdrop-filter: blur(8px) contrast(110%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: 
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.25),
+    0 6px 20px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.liquid-glass-lens.is-morphing {
+  transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* Items Stack */
+.rail-items-stack {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rail-item-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Glass Icon Button */
+.rail-icon-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  color: rgba(242, 240, 234, 0.65);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.rail-icon-btn svg {
+  pointer-events: none;
+  transition: transform 0.25s ease, stroke 0.25s ease;
+}
+
+.rail-icon-btn:hover {
+  color: #FFFFFF;
+}
+
+.rail-icon-btn:hover svg {
+  transform: scale(1.1);
+}
+
+.rail-icon-btn.is-active {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Subtle Active Orange Indicator */
+.active-orange-indicator {
+  position: absolute;
+  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-orange, #FF4D00);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--accent-orange, #FF4D00);
+}
+
+/* Minimal Glass Tooltip (Left Side) */
+.glass-rail-tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: rgba(12, 14, 18, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+}
+
+.glass-rail-tooltip.is-tooltip-open {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  color: var(--accent-orange, #FF4D00);
+  letter-spacing: 0.05em;
+}
+
+.tooltip-title {
+  font-family: var(--font-primary, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-primary, #F2F0EA);
+  text-transform: uppercase;
+}
+
+/* Dossier Light Theme Support */
+[data-theme="dossier-light"] .liquid-glass-rail-container {
+  background: rgba(240, 240, 245, 0.65);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dossier-light"] .rail-connecting-axis {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dossier-light"] .liquid-glass-lens {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.25) 100%);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.9), 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dossier-light"] .rail-icon-btn {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: rgba(20, 20, 20, 0.65);
+}
+
+[data-theme="dossier-light"] .rail-icon-btn:hover,
+[data-theme="dossier-light"] .rail-icon-btn.is-active {
+  color: #000000;
+}
+
+[data-theme="dossier-light"] .glass-rail-tooltip {
+  background: rgba(250, 250, 252, 0.92);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dossier-light"] .tooltip-title {
+  color: #111111;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 640px) {
+  .liquid-glass-rail-root {
+    right: 0.5rem;
+  }
+
+  .liquid-glass-rail-container {
+    --rail-stride: 42px;
+    padding: 8px 6px;
+    border-radius: 32px;
+  }
+
+  .liquid-glass-lens {
+    width: 36px;
+    height: 36px;
+    top: 8px;
+    left: 6px;
+    border-radius: 12px;
+  }
+
+  .rail-items-stack {
+    gap: 6px;
+  }
+
+  .rail-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+  }
+
+  .rail-icon-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+}

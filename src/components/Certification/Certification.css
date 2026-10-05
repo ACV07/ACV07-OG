@@ -1,0 +1,203 @@
+.editorial-certification {
+  padding: clamp(2rem, 4vh, 4.5rem) 0;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  width: 100%;
+}
+
+.cert-registry-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Technical Registry Row Layout */
+.cert-registry-row {
+  display: grid;
+  grid-template-columns: 48px clamp(110px, 14vw, 150px) 1fr clamp(170px, 18vw, 210px);
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  padding: clamp(0.95rem, 1.8vh, 1.35rem) clamp(1rem, 2vw, 1.5rem);
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+}
+
+.cert-registry-row:last-child {
+  border-bottom: none;
+}
+
+.cert-registry-row:hover {
+  background: rgba(255, 77, 0, 0.025);
+  border-bottom-color: var(--accent-amber-border);
+}
+
+/* Number Column */
+.cert-col-num {
+  display: flex;
+  align-items: center;
+}
+
+.cert-number {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--accent-orange);
+  transition: color var(--transition-fast);
+}
+
+.cert-registry-row:hover .cert-number {
+  color: #FF7700;
+}
+
+/* Logo Column */
+.cert-col-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.issuer-logo-svg {
+  max-height: 34px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: opacity var(--transition-fast), filter var(--transition-fast);
+}
+
+.cert-registry-row:hover .issuer-logo-svg {
+  opacity: 1;
+}
+
+/* Main Title & Description Column */
+.cert-col-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.cert-title-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cert-title {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  transition: color var(--transition-fast);
+}
+
+.cert-registry-row:hover .cert-title {
+  color: var(--text-primary);
+}
+
+.cert-sub-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  flex-wrap: wrap;
+}
+
+.cert-issuer-name {
+  color: var(--accent-orange);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.meta-separator {
+  color: var(--text-dim, #444444);
+}
+
+.cert-category-text {
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.cert-description {
+  font-size: 0.81rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-top: 0.15rem;
+}
+
+/* Action Button Column */
+.cert-col-action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cert-verify-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.verify-arrow {
+  color: var(--accent-orange);
+  font-size: 0.9rem;
+  transition: transform var(--transition-fast);
+}
+
+.cert-verify-btn:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  background: var(--accent-amber-subtle);
+}
+
+.cert-verify-btn:hover .verify-arrow {
+  transform: translateX(4px);
+}
+
+.cert-registry-row:hover .cert-verify-btn {
+  border-color: var(--accent-amber-border);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+  .cert-registry-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .cert-col-num {
+    display: inline-flex;
+  }
+
+  .cert-col-action {
+    justify-content: flex-start;
+    margin-top: 0.4rem;
+  }
+
+  .cert-verify-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

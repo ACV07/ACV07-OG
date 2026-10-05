@@ -1,0 +1,134 @@
+.editorial-profile {
+  min-height: calc(100vh - var(--nav-height, 72px));
+  padding-top: var(--section-padding-y);
+  padding-bottom: clamp(2rem, 4vh, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  width: 100%;
+}
+
+.profile-editorial-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--grid-gap);
+  align-items: center;
+  margin: auto 0;
+  padding: 2rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-discipline-heading {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.profile-discipline-heading .slash {
+  color: var(--accent-orange);
+  font-weight: 400;
+}
+
+.discipline-meta-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 2px solid var(--accent-orange);
+  padding-left: 1.25rem;
+  max-width: 680px;
+}
+
+.discipline-meta-text {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Right Column Dossier Card */
+.profile-right-col {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.positioning-dossier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: clamp(1.5rem, 2.5vh, 2.25rem);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast);
+}
+
+.positioning-dossier-card:hover {
+  border-color: var(--accent-amber-border);
+}
+
+.card-header-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.85rem;
+}
+
+.card-num {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  line-height: 1.2;
+}
+
+.card-tag {
+  font-family: var(--font-mono);
+  font-size: clamp(0.68rem, 0.9vw, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.card-body-text {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  color: var(--text-primary);
+  line-height: 1.65;
+}
+
+.card-pills-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 900px) {
+  .profile-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .profile-right-col {
+    justify-content: flex-start;
+  }
+}

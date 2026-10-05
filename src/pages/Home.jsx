@@ -18,14 +18,9 @@ import GridRuler from '../components/GridRuler/GridRuler';
 import { navigationItems } from '../data/navigation';
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(() => {
-    // Initial visit / refresh triggers loading screen
-    const hasLoaded = sessionStorage.getItem('has_loaded_portfolio');
-    return !hasLoaded;
-  });
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadingComplete = () => {
-    sessionStorage.setItem('has_loaded_portfolio', 'true');
     setIsLoading(false);
   };
 

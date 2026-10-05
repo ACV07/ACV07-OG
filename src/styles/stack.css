@@ -27,12 +27,18 @@
   box-sizing: border-box;
 }
 
-/* Reduced Motion Fallback */
-@media (prefers-reduced-motion: reduce) {
+/* Reduced Motion & Mobile Fallback */
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
   .stack-section-wrapper {
-    position: relative;
-    top: auto;
-    min-height: auto;
-    box-shadow: none;
+    position: relative !important;
+    top: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .stack-section-inner {
+    min-height: auto !important;
   }
 }

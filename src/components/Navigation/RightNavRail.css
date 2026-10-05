@@ -237,35 +237,6 @@
 /* Mobile & Tablet Responsiveness */
 @media (max-width: 640px) {
   .liquid-glass-rail-root {
-    right: 0.5rem;
-  }
-
-  .liquid-glass-rail-container {
-    --rail-stride: 42px;
-    padding: 8px 6px;
-    border-radius: 32px;
-  }
-
-  .liquid-glass-lens {
-    width: 36px;
-    height: 36px;
-    top: 8px;
-    left: 6px;
-    border-radius: 12px;
-  }
-
-  .rail-items-stack {
-    gap: 6px;
-  }
-
-  .rail-icon-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-  }
-
-  .rail-icon-btn svg {
-    width: 15px;
-    height: 15px;
+    display: none !important;
   }
 }

@@ -435,3 +435,33 @@
     max-width: 320px;
   }
 }
+
+@media (max-width: 480px) {
+  .loading-content-center {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .hud-center-composition {
+    width: 220px;
+    height: 220px;
+  }
+
+  .acv-logo-container {
+    width: 130px;
+  }
+
+  .loading-progress-block {
+    max-width: 270px;
+  }
+
+  .progress-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+  }
+
+  .tagline-content {
+    font-size: 0.7rem;
+    gap: 0.35rem;
+  }
+}

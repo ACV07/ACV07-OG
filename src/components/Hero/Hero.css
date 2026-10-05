@@ -145,4 +145,37 @@
   60% { transform: translateY(3px); }
 }
 
+@media (max-width: 768px) {
+  .editorial-hero {
+    min-height: auto;
+    padding-top: calc(var(--header-height) + 1.25rem);
+    padding-bottom: 2rem;
+  }
+
+  .hero-corner-mark {
+    display: none;
+  }
+
+  .hero-container {
+    min-height: auto;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero-main-title {
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+
+  .hero-name-line {
+    font-size: clamp(2.8rem, 13vw, 5.5rem);
+  }
+
+  .hero-cover-footer {
+    justify-content: center;
+    padding-top: 1rem;
+  }
+}
+
 

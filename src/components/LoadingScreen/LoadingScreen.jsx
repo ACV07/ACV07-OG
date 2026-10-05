@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import acvLogo from '../../assets/acv_logo.png';
 import './LoadingScreen.css';
 
 export default function LoadingScreen({ onComplete }) {
@@ -126,7 +127,7 @@ export default function LoadingScreen({ onComplete }) {
             {/* Central ACV Logo */}
             <div className="acv-logo-container">
               <img 
-                src="./assets/acv_logo.png" 
+                src={acvLogo} 
                 alt="ACV Logo" 
                 className="acv-logo-img"
               />

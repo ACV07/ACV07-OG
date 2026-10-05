@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { navigationItems } from '../../data/navigation';
 import RightNavRail from './RightNavRail';
+import acvLogo from '../../assets/acv_logo.png';
 import './Navigation.css';
 
 export default function Navigation() {
@@ -109,7 +110,7 @@ export default function Navigation() {
         <div className="nav-container">
           {/* Brand / Identifier */}
           <div className="nav-brand" onClick={() => scrollTo('profile')}>
-            <img src="./assets/acv_logo.png" alt="ACV Logo" className="nav-acv-logo" />
+            <img src={acvLogo} alt="ACV Logo" className="nav-acv-logo" />
           </div>
 
           {/* Status / Controls */}

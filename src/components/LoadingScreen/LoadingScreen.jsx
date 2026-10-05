@@ -23,6 +23,17 @@ export default function LoadingScreen({ onComplete }) {
     } catch (e) {}
   }, [theme]);
 
+  // Lock body scroll during active loading screen
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
+  }, []);
+
   // Handle theme toggle click
   const handleToggleTheme = () => {
     const nextTheme = theme === 'editorial-dark' ? 'dossier-light' : 'editorial-dark';

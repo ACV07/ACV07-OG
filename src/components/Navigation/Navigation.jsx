@@ -109,7 +109,7 @@ export default function Navigation() {
         <div className="nav-container">
           {/* Brand / Identifier */}
           <div className="nav-brand" onClick={() => scrollTo('profile')}>
-            <img src="/assets/acv_logo.png" alt="ACV Logo" className="nav-acv-logo" />
+            <img src="./assets/acv_logo.png" alt="ACV Logo" className="nav-acv-logo" />
           </div>
 
           {/* Status / Controls */}

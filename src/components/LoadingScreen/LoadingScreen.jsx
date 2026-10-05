@@ -126,7 +126,7 @@ export default function LoadingScreen({ onComplete }) {
             {/* Central ACV Logo */}
             <div className="acv-logo-container">
               <img 
-                src="/assets/acv_logo.png" 
+                src="./assets/acv_logo.png" 
                 alt="ACV Logo" 
                 className="acv-logo-img"
               />

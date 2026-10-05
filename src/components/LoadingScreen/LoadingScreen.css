@@ -416,54 +416,126 @@
   }
 }
 
-/* Responsive Scaling */
+/* Perfect Mobile Center Alignment & Scaling */
 @media (max-width: 768px) {
-  .hud-middle-row {
+  .loading-content-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hud-middle-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: auto;
+    gap: 1rem;
+    position: static;
+  }
+
+  .hud-center-composition {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .acv-logo-container {
+    width: 115px;
+  }
+
+  .hud-side-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .hud-side-label.side-left,
   .hud-side-label.side-right {
-    font-size: 0.72rem;
+    position: static;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .hud-axis-horiz-left,
-  .hud-axis-horiz-right {
+  .hud-axis-horiz-right,
+  .hud-square-marker-left,
+  .hud-square-marker-right {
     display: none;
   }
 
   .loading-progress-block {
-    max-width: 320px;
-  }
-}
-
-@media (max-width: 480px) {
-  .loading-content-center {
-    gap: 1.5rem;
-    padding: 0 1rem;
-  }
-
-  .hud-center-composition {
-    width: 220px;
-    height: 220px;
-  }
-
-  .acv-logo-container {
-    width: 130px;
-  }
-
-  .loading-progress-block {
-    max-width: 270px;
+    width: 100%;
+    max-width: 290px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .progress-title {
     font-size: 0.8rem;
     letter-spacing: 0.16em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .progress-bar-container {
+    width: 100%;
+    padding: 0.35rem 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .progress-track {
+    flex-grow: 1;
+    height: 8px;
+  }
+
+  .progress-percent {
+    font-size: 0.85rem;
+    min-width: 36px;
+    text-align: center;
+  }
+
+  .loading-tagline-block {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.25rem 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
   }
 
   .tagline-content {
-    font-size: 0.7rem;
+    font-size: clamp(0.6rem, 2.8vw, 0.75rem);
+    letter-spacing: 0.05em;
     gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
   }
 }

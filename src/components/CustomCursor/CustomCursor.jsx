@@ -8,7 +8,7 @@ export default function CustomCursor() {
 
   useEffect(() => {
     // Disable custom cursor on mobile / touch devices
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
 
     const onMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });

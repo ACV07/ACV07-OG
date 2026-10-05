@@ -11,7 +11,11 @@ export default function Navigation() {
   const [isRailVisible, setIsRailVisible] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio_theme') || 'editorial-dark';
+    try {
+      return localStorage.getItem('portfolio_theme') || 'editorial-dark';
+    } catch (e) {
+      return 'editorial-dark';
+    }
   });
 
   useEffect(() => {
@@ -90,7 +94,9 @@ export default function Navigation() {
   const toggleTheme = () => {
     const newTheme = theme === 'editorial-dark' ? 'dossier-light' : 'editorial-dark';
     setTheme(newTheme);
-    localStorage.setItem('portfolio_theme', newTheme);
+    try {
+      localStorage.setItem('portfolio_theme', newTheme);
+    } catch (e) {}
     document.documentElement.setAttribute('data-theme', newTheme);
   };
 

@@ -6,7 +6,11 @@ export default function LoadingScreen({ onComplete }) {
   const [progress, setProgress] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio_theme') || 'editorial-dark';
+    try {
+      return localStorage.getItem('portfolio_theme') || 'editorial-dark';
+    } catch (e) {
+      return 'editorial-dark';
+    }
   });
 
   const animFrameRef = useRef(null);
@@ -14,7 +18,9 @@ export default function LoadingScreen({ onComplete }) {
   // Sync theme attribute on mount and state change
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio_theme', theme);
+    try {
+      localStorage.setItem('portfolio_theme', theme);
+    } catch (e) {}
   }, [theme]);
 
   // Handle theme toggle click

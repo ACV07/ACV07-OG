@@ -133,3 +133,75 @@
     gap: 1.25rem;
   }
 }
+
+@media (max-width: 767px) {
+  .editorial-participation {
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    padding-top: calc(var(--header-height, 64px) + env(safe-area-inset-top, 0px) + 0.25rem);
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  .editorial-participation .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .participation-grid {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .participation-card {
+    padding: 0.4rem 0.65rem;
+    gap: 0.25rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .part-card-top {
+    padding-bottom: 0.2rem;
+  }
+
+  .part-num {
+    font-size: 0.9rem;
+  }
+
+  .part-title {
+    font-size: 0.82rem;
+    line-height: 1.15;
+  }
+
+  .part-description {
+    font-size: 0.68rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .part-tags {
+    padding-top: 0.2rem;
+    gap: 0.2rem;
+  }
+
+  .tech-outline-tag {
+    font-size: 0.58rem;
+    padding: 0.08rem 0.3rem;
+  }
+}

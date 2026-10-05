@@ -88,3 +88,37 @@
     align-items: flex-start;
   }
 }
+
+@media (max-width: 767px) {
+  .editorial-footer {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .footer-top-row {
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-title {
+    font-size: 0.95rem;
+  }
+
+  .back-top-btn {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.65rem;
+  }
+
+  .footer-mid-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    font-size: 0.65rem;
+  }
+}

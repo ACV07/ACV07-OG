@@ -108,7 +108,7 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
           className={`liquid-glass-lens ${isStretching ? 'is-morphing' : ''}`}
           style={{
             transform: isMobile
-              ? `translate3d(calc(${targetIndex} * ((100% - 44px) / 7)), 0, 0) scaleX(${isStretching ? 1.18 : 1}) scaleY(${isStretching ? 0.92 : 1})`
+              ? `translate3d(calc(${targetIndex} * 100%), 0, 0) scaleX(${isStretching ? 1.14 : 1}) scaleY(${isStretching ? 0.92 : 1})`
               : `translate3d(0, calc(${targetIndex} * var(--rail-stride, 52px)), 0) scaleY(${isStretching ? 1.12 : 1}) scaleX(${isStretching ? 0.94 : 1})`
           }}
         />

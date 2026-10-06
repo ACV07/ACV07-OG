@@ -243,9 +243,9 @@
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) !important;
-    width: calc(100vw - 32px) !important;
-    max-width: 430px !important;
-    height: 60px !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 440px !important;
+    height: 56px !important;
     z-index: 99999 !important;
     display: block !important;
     pointer-events: none;
@@ -261,75 +261,107 @@
   .liquid-glass-rail-container {
     width: 100% !important;
     height: 100% !important;
+    position: relative !important;
+    display: flex !important;
     flex-direction: row !important;
-    justify-content: space-between !important;
     align-items: center !important;
-    padding: 8px 10px !important;
-    border-radius: 24px !important;
+    padding: 6px 8px !important;
+    border-radius: 28px !important;
     box-sizing: border-box !important;
-    background: rgba(14, 16, 20, 0.78) !important;
-    backdrop-filter: blur(20px) saturate(140%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    background: rgba(12, 14, 18, 0.82) !important;
+    backdrop-filter: blur(24px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
     box-shadow: 
-      0 12px 36px rgba(0, 0, 0, 0.8),
-      inset 0 1px 1px rgba(255, 255, 255, 0.28),
-      inset 0 -1px 1px rgba(0, 0, 0, 0.5) !important;
+      0 12px 32px rgba(0, 0, 0, 0.85),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.6) !important;
   }
 
   .rail-connecting-axis {
     top: 50% !important;
     bottom: auto !important;
-    left: 16px !important;
-    right: 16px !important;
-    width: auto !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: calc(100% - 16px) !important;
     height: 1px !important;
     transform: translateY(-50%) !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
+    display: grid !important;
+    grid-template-columns: repeat(8, 1fr) !important;
+    align-items: center !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
   }
 
   .axis-node-dot {
+    justify-self: center !important;
     width: 3px !important;
     height: 3px !important;
   }
 
   .liquid-glass-lens {
-    top: 8px !important;
+    top: 6px !important;
     left: 8px !important;
-    width: 44px !important;
+    width: calc((100% - 16px) / 8) !important;
     height: 44px !important;
-    border-radius: 16px !important;
-    transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.18) 100%) !important;
+    backdrop-filter: blur(12px) contrast(115%) !important;
+    -webkit-backdrop-filter: blur(12px) contrast(115%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.42) !important;
+    box-shadow: 
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.75),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.3),
+      0 6px 20px rgba(0, 0, 0, 0.6) !important;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
   }
 
   .rail-items-stack {
     width: 100% !important;
     height: 100% !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
+    display: grid !important;
+    grid-template-columns: repeat(8, 1fr) !important;
     align-items: center !important;
     gap: 0 !important;
+    position: relative !important;
+    z-index: 3 !important;
   }
 
   .rail-item-wrapper {
-    flex: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
   }
 
   .rail-icon-btn {
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 14px !important;
+    width: 100% !important;
+    height: 44px !important;
+    border-radius: 16px !important;
     background: transparent !important;
     border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
   }
 
   .rail-icon-btn svg {
-    width: 17px !important;
-    height: 17px !important;
+    width: 19px !important;
+    height: 19px !important;
+  }
+
+  .active-orange-indicator {
+    position: absolute !important;
+    bottom: 3px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 4px !important;
+    height: 4px !important;
+    background: var(--accent-orange, #FF4D00) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 6px var(--accent-orange, #FF4D00) !important;
   }
 
   .glass-rail-tooltip {

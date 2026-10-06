@@ -46,8 +46,7 @@ export default function Profile() {
 
               <div className="card-body-text">
                 <p>
-                  Cybersecurity student focused on understanding how systems fail, 
-                  how attacks happen, and how resilient infrastructure can be built.
+                  I'm focused on understanding how systems fail, how attacks happen, and how resilient infrastructure can be built.
                 </p>
               </div>
 

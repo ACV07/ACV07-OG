@@ -60,8 +60,17 @@ const navIcons = {
 export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
   const [hoveredId, setHoveredId] = useState(null);
   const [isStretching, setIsStretching] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 900);
   const prevIndexRef = useRef(0);
   const stretchTimerRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const targetId = hoveredId || activeSection || 'profile';
   const targetIndex = Math.max(0, navigationItems.findIndex(item => item.id === targetId));
@@ -98,7 +107,9 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
         <div 
           className={`liquid-glass-lens ${isStretching ? 'is-morphing' : ''}`}
           style={{
-            transform: `translate3d(0, calc(${targetIndex} * var(--rail-stride, 52px)), 0) scaleY(${isStretching ? 1.12 : 1}) scaleX(${isStretching ? 0.94 : 1})`
+            transform: isMobile
+              ? `translate3d(calc(${targetIndex} * ((100% - 44px) / 7)), 0, 0) scaleX(${isStretching ? 1.18 : 1}) scaleY(${isStretching ? 0.92 : 1})`
+              : `translate3d(0, calc(${targetIndex} * var(--rail-stride, 52px)), 0) scaleY(${isStretching ? 1.12 : 1}) scaleX(${isStretching ? 0.94 : 1})`
           }}
         />
 

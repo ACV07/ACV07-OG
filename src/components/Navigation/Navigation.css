@@ -298,51 +298,39 @@
   }
 
   .editorial-nav {
-    top: auto;
-    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 1.75rem);
-    max-width: 460px;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
     height: 56px;
-    border-radius: 9999px;
-    background: rgba(14, 14, 14, 0.72);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 
-      0 12px 32px rgba(0, 0, 0, 0.7), 
-      inset 0 1px 0 rgba(255, 255, 255, 0.25),
-      0 0 0 1px rgba(0, 0, 0, 0.4);
-    z-index: 100000;
-    transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    border-radius: 0;
+    background: rgba(10, 10, 10, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(242, 240, 234, 0.08);
+    box-shadow: none;
+    z-index: 1000;
   }
 
   .editorial-nav.is-scrolled {
-    background: rgba(10, 10, 10, 0.85);
-    border-color: rgba(255, 77, 0, 0.4);
-    box-shadow: 
-      0 12px 36px rgba(0, 0, 0, 0.85), 
-      0 0 16px rgba(255, 77, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: rgba(10, 10, 10, 0.82);
+    border-bottom-color: rgba(242, 240, 234, 0.12);
   }
 
   [data-theme="dossier-light"] .editorial-nav {
-    background: rgba(242, 240, 234, 0.82);
-    border-color: rgba(10, 10, 10, 0.18);
-    box-shadow: 
-      0 12px 32px rgba(0, 0, 0, 0.12), 
-      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    background: rgba(242, 240, 234, 0.85);
+    border-bottom-color: rgba(10, 10, 10, 0.1);
   }
 
   .nav-container {
-    padding: 0 0.85rem;
+    padding: 0 1rem;
     height: 100%;
     gap: 0.5rem;
   }
 
   .nav-acv-logo {
-    height: 26px;
+    height: 28px;
   }
 
   .nav-actions {
@@ -372,11 +360,10 @@
   }
 
   .mobile-menu-overlay {
-    top: 0;
-    bottom: calc(56px + 1.25rem + env(safe-area-inset-bottom, 0px));
-    height: auto;
-    border-top: none;
-    border-bottom: 1px solid var(--border-color);
+    top: 56px;
+    bottom: 0;
+    height: calc(100vh - 56px);
+    border-top: 1px solid var(--border-color);
   }
 
   .mobile-txt {

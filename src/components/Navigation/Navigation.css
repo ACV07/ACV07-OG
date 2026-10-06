@@ -283,6 +283,7 @@
   padding-top: 1.5rem;
 }
 
+/* Dedicated Mobile Floating Liquid Glass Navigation Bar (<= 900px) */
 @media (max-width: 900px) {
   .nav-menu {
     display: none;
@@ -295,10 +296,7 @@
   .brand-tag {
     display: none;
   }
-}
 
-/* Dedicated Mobile Floating Liquid Glass Navigation Bar (<= 767px) */
-@media (max-width: 767px) {
   .editorial-nav {
     top: auto;
     bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));

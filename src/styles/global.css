@@ -135,10 +135,7 @@ img, video {
 }
 
 .section-number {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--accent-orange);
-  letter-spacing: 0.1em;
+  display: none !important;
 }
 
 .section-title {

@@ -8,7 +8,6 @@ export default function Contact() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">09 / DIRECT CHANNELS</span>
             <h2 className="section-title">CONTACT</h2>
           </div>
           <div className="section-meta">

@@ -8,7 +8,6 @@ export default function Profile() {
         {/* Section Editorial Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">01 / PROFILE</span>
             <h2 className="section-title">PROFILE</h2>
           </div>
           <div className="section-meta">

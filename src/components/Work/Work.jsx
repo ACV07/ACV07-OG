@@ -9,7 +9,6 @@ export default function Work() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">05 / SELECTED PROJECTS & SYSTEMS</span>
             <h2 className="section-title">WORK</h2>
           </div>
           <div className="section-meta">

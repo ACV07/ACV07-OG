@@ -10,7 +10,6 @@ export default function Certification() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">08 / VERIFIED CREDENTIALS</span>
             <h2 className="section-title">CERTIFICATION</h2>
           </div>
           <div className="section-meta">

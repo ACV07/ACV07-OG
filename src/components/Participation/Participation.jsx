@@ -9,7 +9,6 @@ export default function Participation() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">07 / PARTICIPATION ARCHIVE</span>
             <h2 className="section-title">PARTICIPATION</h2>
           </div>
           <div className="section-meta">

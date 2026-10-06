@@ -36,7 +36,6 @@ export default function About() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">02 / DOSSIER INTRO</span>
             <h2 className="section-title">WHO I AM</h2>
           </div>
           <div className="section-meta">

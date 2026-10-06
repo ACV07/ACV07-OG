@@ -12,7 +12,6 @@ export default function Projects() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">04 / SELECTED WORK</span>
             <h2 className="section-title">SECURITY PROJECTS</h2>
           </div>
           <div className="section-meta">

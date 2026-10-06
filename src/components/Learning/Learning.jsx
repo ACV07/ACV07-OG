@@ -23,7 +23,6 @@ export default function Learning() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">06 / ACADEMIC & SELF-LEARNING</span>
             <h2 className="section-title">LEARNING JOURNEY</h2>
           </div>
           <div className="section-meta">

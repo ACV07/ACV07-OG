@@ -9,7 +9,6 @@ export default function Experience() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">03 / CHRONOLOGY</span>
             <h2 className="section-title">EXPERIENCE</h2>
           </div>
           <div className="section-meta">

@@ -50,7 +50,6 @@ export default function Expertise() {
         {/* Section Header */}
         <div className="section-editorial-header">
           <div className="section-title-wrap">
-            <span className="section-number">03 / CAPABILITIES</span>
             <h2 className="section-title">SECURITY EXPERTISE</h2>
           </div>
           <div className="section-meta">

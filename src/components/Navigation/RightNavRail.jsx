@@ -62,10 +62,18 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
   const [isStretching, setIsStretching] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 900);
   
-  // Mobile Dragging State
+  // Mobile Navigation State (Single Source of Truth)
+  const [mobileSelectedId, setMobileSelectedId] = useState(activeSection || 'profile');
   const [isDragging, setIsDragging] = useState(false);
   const [dragX, setDragX] = useState(0);
   const [dragFloatIndex, setDragFloatIndex] = useState(0);
+
+  // Synchronize mobileSelectedId with activeSection when parent activeSection changes
+  useEffect(() => {
+    if (activeSection) {
+      setMobileSelectedId(activeSection);
+    }
+  }, [activeSection]);
 
   // Desktop Hover Tracking State
   const [isDesktopHovering, setIsDesktopHovering] = useState(false);
@@ -90,7 +98,17 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const targetId = hoveredId || activeSection || 'profile';
+  const handleItemClick = (id) => {
+    if (isMobile) {
+      setMobileSelectedId(id);
+    }
+    scrollTo(id);
+  };
+
+  const targetId = isMobile
+    ? (mobileSelectedId || activeSection || 'profile')
+    : (hoveredId || activeSection || 'profile');
+
   const targetIndex = Math.max(0, navigationItems.findIndex(item => item.id === targetId));
 
   useEffect(() => {
@@ -200,6 +218,7 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
         const finalIndex = Math.max(0, Math.min(7, Math.round(dragX / slotW)));
         const targetItem = navigationItems[finalIndex];
         if (targetItem) {
+          setMobileSelectedId(targetItem.id);
           scrollTo(targetItem.id);
         }
       }
@@ -265,7 +284,7 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
         <div className="rail-connecting-axis">
           {navigationItems.map((item, idx) => {
             const isDotActive = isMobile 
-              ? (isDragging ? Math.round(dragFloatIndex) === idx : activeSection === item.id)
+              ? (isDragging ? Math.round(dragFloatIndex) === idx : targetId === item.id)
               : (isDesktopHovering ? Math.round(desktopHoverFloatIndex) === idx : activeSection === item.id);
             return (
               <span 
@@ -285,7 +304,7 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
         {/* 8 Navigation Items */}
         <div className="rail-items-stack">
           {navigationItems.map((item, idx) => {
-            const isActive = activeSection === item.id;
+            const isActive = isMobile ? (targetId === item.id) : (activeSection === item.id);
             const isHovered = hoveredId === item.id;
 
             // Calculate Magnification scale
@@ -325,7 +344,7 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    scrollTo(item.id);
+                    handleItemClick(item.id);
                   }}
                   className={`rail-icon-btn ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''} ${magnifyScale > 1 ? 'is-magnified' : ''}`}
                   aria-label={`Scroll to ${item.title}`}

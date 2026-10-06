@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { navigationItems } from '../../data/navigation';
 import RightNavRail from './RightNavRail';
 import acvLogo from '../../assets/acv_logo.png';
@@ -76,17 +76,20 @@ export default function Navigation() {
         setIsRailVisible(window.scrollY > 300);
       }
 
-      // If programmatic navigation is active, suppress intermediate scroll-spy updates
+      // If programmatic navigation is active, suppress intermediate scroll-spy section changes
       if (isNavigatingRef.current && targetNavIdRef.current) {
-        const targetTop = getSectionTargetTop(targetNavIdRef.current);
+        const targetId = targetNavIdRef.current;
+        setActiveSection(targetId);
+
+        const targetTop = getSectionTargetTop(targetId);
         const dist = Math.abs(window.scrollY - targetTop);
-        if (dist <= 40) {
+
+        if (dist < 10) {
           isNavigatingRef.current = false;
           targetNavIdRef.current = null;
           if (navLockTimerRef.current) clearTimeout(navLockTimerRef.current);
-        } else {
-          return;
         }
+        return; // Lock activeSection to targetId until destination is reached
       }
 
       // Detect current active section based on current scroll position
@@ -134,7 +137,7 @@ export default function Navigation() {
     navLockTimerRef.current = setTimeout(() => {
       isNavigatingRef.current = false;
       targetNavIdRef.current = null;
-    }, 900);
+    }, 1200);
 
     const targetTop = getSectionTargetTop(id);
     window.scrollTo({

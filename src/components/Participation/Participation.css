@@ -127,6 +127,13 @@
   white-space: nowrap;
 }
 
+.tech-outline-tag.tag-highlight {
+  color: var(--accent-orange, #FF4D00);
+  border-color: rgba(255, 77, 0, 0.4);
+  background: rgba(255, 77, 0, 0.08);
+  font-weight: 700;
+}
+
 @media (max-width: 900px) {
   .participation-grid {
     grid-template-columns: minmax(0, 1fr);

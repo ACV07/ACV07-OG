@@ -33,11 +33,17 @@ export default function Participation() {
 
               {item.tags && item.tags.length > 0 && (
                 <div className="part-tags">
-                  {item.tags.map((tag, idx) => (
-                    <span key={idx} className="tech-outline-tag">
-                      [ {tag.toUpperCase()} ]
-                    </span>
-                  ))}
+                  {item.tags.map((tag, idx) => {
+                    const isHighlight = tag.toUpperCase().includes('PRIZE');
+                    return (
+                      <span 
+                        key={idx} 
+                        className={`tech-outline-tag ${isHighlight ? 'tag-highlight' : ''}`}
+                      >
+                        [ {tag.toUpperCase()} ]
+                      </span>
+                    );
+                  })}
                 </div>
               )}
             </article>

@@ -1,10 +1,10 @@
 export const participationData = [
   {
     num: "01",
-    category: "COMPETITIVE HACKATHON",
-    title: "GLOBAL LEVEL CHRIST COLLEGE HACKATHON 2026",
-    description: "Participated in a global-level hackathon at Christ University, collaborating under time constraints to develop and present a technology-driven solution to a real-world problem.",
-    tags: ["Global Level", "Hackathon", "2026"]
+    category: "INTERNATIONAL HACKATHON",
+    title: "INTERNATIONAL LEVEL CHRIST UNIVERSITY HACKATHON",
+    description: "Participated in an international-level hackathon at Christ University, collaborating as a team to develop and present a technology-driven solution, securing 2nd Prize among competing teams.",
+    tags: ["INTERNATIONAL LEVEL", "2ND PRIZE", "2026"]
   },
   {
     num: "02",

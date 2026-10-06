@@ -208,31 +208,43 @@
     gap: 0.2rem !important;
   }
 
-  /* Compact Mobile Header */
+  /* Mobile Section Header */
   .editorial-learning .section-editorial-header {
-    padding: 0.15rem 0 !important;
-    margin-bottom: 0.15rem !important;
-    gap: 0.35rem !important;
-    align-items: flex-start !important;
+    padding: clamp(0.25rem, 0.8vh, 0.4rem) 0 !important;
+    margin-bottom: clamp(0.15rem, 0.5vh, 0.3rem) !important;
+    gap: clamp(0.35rem, 1.5vw, 0.6rem) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     flex-shrink: 0 !important;
   }
 
+  .editorial-learning .section-title-wrap {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
   .editorial-learning .section-number {
-    font-size: 0.6rem !important;
-    letter-spacing: 0.06em !important;
+    display: none !important;
   }
 
   .editorial-learning .section-title {
-    font-size: clamp(0.95rem, 3.8vw, 1.25rem) !important;
-    line-height: 1.05 !important;
-    letter-spacing: -0.02em !important;
+    font-size: clamp(1.22rem, 5.2vw, 1.58rem) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.025em !important;
+    white-space: nowrap !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
   }
 
   .editorial-learning .section-meta {
-    font-size: 0.54rem !important;
-    line-height: 1.15 !important;
-    max-width: 125px !important;
+    font-size: clamp(0.48rem, 1.8vw, 0.55rem) !important;
+    line-height: 1.2 !important;
+    max-width: clamp(105px, 35vw, 130px) !important;
     text-align: right !important;
+    flex-shrink: 0 !important;
   }
 
   /* Compact Mobile In-Progress Status Bar */

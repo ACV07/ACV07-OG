@@ -15,7 +15,7 @@ export default function Hero() {
           <div className="meta-block center">
             <span className="live-pulse"></span>
             <span className="mono-label">[ FIELD STATUS ]</span>
-            <span className="meta-val highlight">ACTIVE RESEARCHER</span>
+            <span className="meta-val highlight">EXPLORING THE ATTACK SURFACE</span>
           </div>
         </div>
 

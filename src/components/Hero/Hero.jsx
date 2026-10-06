@@ -10,19 +10,22 @@ export default function Hero() {
       <div className="hero-corner-mark top-right">+ 77.5946° E</div>
 
       <div className="container hero-container">
-        {/* Top Field Journal Header */}
-        <div className="hero-header-meta">
-          <div className="meta-block center">
-            <span className="live-pulse"></span>
-            <span className="mono-label">[ FIELD STATUS ]</span>
-            <span className="meta-val highlight">EXPLORING THE ATTACK SURFACE</span>
+        {/* Centered Hero Content Block */}
+        <div className="hero-center-block">
+          {/* Top Field Journal Header */}
+          <div className="hero-header-meta">
+            <div className="meta-block center">
+              <span className="live-pulse"></span>
+              <span className="mono-label">[ FIELD STATUS ]</span>
+              <span className="meta-val highlight">EXPLORING THE ATTACK SURFACE</span>
+            </div>
           </div>
-        </div>
 
-        {/* Dominant Cover Name Typography */}
-        <div className="hero-main-title">
-          <h1 className="hero-name-line">ADRIAN</h1>
-          <h1 className="hero-name-line indent">CHERIAN</h1>
+          {/* Dominant Cover Name Typography */}
+          <div className="hero-main-title">
+            <h1 className="hero-name-line">ADRIAN</h1>
+            <h1 className="hero-name-line indent">CHERIAN</h1>
+          </div>
         </div>
 
         {/* Bottom Cover Footer Scroll Indicator */}

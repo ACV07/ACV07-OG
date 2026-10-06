@@ -260,14 +260,14 @@
     height: 56px !important;
     z-index: 99999 !important;
     display: block !important;
-    pointer-events: none;
-    opacity: 0;
+    pointer-events: auto !important;
+    opacity: 1 !important;
     transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .liquid-glass-rail-root.is-visible {
-    opacity: 1;
-    pointer-events: auto;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .liquid-glass-rail-container {

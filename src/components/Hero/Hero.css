@@ -191,14 +191,20 @@
     flex-grow: 1 !important;
   }
 
-  /* Hide technical header meta block on mobile only */
-  .hero-header-meta {
+  /* Completely hide technical field status header meta block on mobile only */
+  .hero-header-meta,
+  .hero-header-meta *,
+  .editorial-hero .hero-header-meta,
+  .editorial-hero .meta-block {
     display: none !important;
-  }
-
-  .meta-val {
-    font-size: clamp(0.65rem, 2.2vw, 0.75rem) !important;
-    text-align: center !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
   }
 
   .hero-main-title {

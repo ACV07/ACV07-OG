@@ -22,10 +22,11 @@ export default function LoadingScreen({ onComplete }) {
     } catch (e) {}
   }, [theme]);
 
-  // Lock body scroll during active loading screen
+  // Lock body scroll during active loading screen & ensure scroll position starts at top
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     document.body.style.touchAction = 'none';
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     return () => {
       document.body.style.overflow = '';

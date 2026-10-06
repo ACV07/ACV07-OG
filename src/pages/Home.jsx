@@ -20,8 +20,17 @@ import { navigationItems } from '../data/navigation';
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
+  // Guarantee browser refresh/load always defaults to the top (ADRIAN CHERIAN Name Page)
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
   const handleLoadingComplete = () => {
     setIsLoading(false);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
   const getZIndex = (id) => {

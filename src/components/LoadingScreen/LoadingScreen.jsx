@@ -40,38 +40,28 @@ export default function LoadingScreen({ onComplete }) {
     setTheme(nextTheme);
   };
 
-  // Precise 6-Second Loading Sequence
+  // Robust Wall-Clock Loading Sequence (Guaranteed to complete on mobile WebViews)
   useEffect(() => {
-    const startTime = performance.now();
-    const totalDuration = 5700; // Reach 100% at ~5.7s
+    const startTime = Date.now();
+    const totalDuration = 4000; // Snappy 4.0s progress load
 
-    const updateProgress = (currentTime) => {
-      const elapsed = currentTime - startTime;
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
       const calculatedProgress = Math.min(100, Math.floor((elapsed / totalDuration) * 100));
       
       setProgress(calculatedProgress);
 
-      if (elapsed < totalDuration) {
-        animFrameRef.current = requestAnimationFrame(updateProgress);
-      } else {
+      if (elapsed >= totalDuration) {
+        clearInterval(interval);
         setProgress(100);
-        // Hold 100% briefly, then trigger 6.0s transition to homepage
+        setFadeOut(true);
         setTimeout(() => {
-          setFadeOut(true);
-          setTimeout(() => {
-            if (onComplete) onComplete();
-          }, 500); // 500ms fade duration
-        }, 200);
+          if (onComplete) onComplete();
+        }, 400);
       }
-    };
+    }, 30);
 
-    animFrameRef.current = requestAnimationFrame(updateProgress);
-
-    return () => {
-      if (animFrameRef.current) {
-        cancelAnimationFrame(animFrameRef.current);
-      }
-    };
+    return () => clearInterval(interval);
   }, [onComplete]);
 
   return (

@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import acvLogo from '../../assets/acv_logo.png';
 import './LoadingScreen.css';
 
 export default function LoadingScreen({ onComplete }) {
   const [progress, setProgress] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
   const [theme, setTheme] = useState(() => {
     try {
@@ -12,8 +13,6 @@ export default function LoadingScreen({ onComplete }) {
       return 'editorial-dark';
     }
   });
-
-  const animFrameRef = useRef(null);
 
   // Sync theme attribute on mount and state change
   useEffect(() => {
@@ -40,29 +39,80 @@ export default function LoadingScreen({ onComplete }) {
     setTheme(nextTheme);
   };
 
-  // Robust Wall-Clock Loading Sequence (Guaranteed to complete on mobile WebViews)
+  // High-precision 6.0-second Loading Sequence
   useEffect(() => {
-    const startTime = Date.now();
-    const totalDuration = 4000; // Snappy 4.0s progress load
+    const totalDuration = 6000; // 6.0 seconds exact duration
+    const startTime = performance.now();
+    let animId;
 
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const calculatedProgress = Math.min(100, Math.floor((elapsed / totalDuration) * 100));
-      
-      setProgress(calculatedProgress);
+    const tick = (now) => {
+      const elapsed = Math.min(totalDuration, now - startTime);
+      setElapsedTime(elapsed);
 
-      if (elapsed >= totalDuration) {
-        clearInterval(interval);
+      // Smooth percentage 0% -> 100%
+      const currentProgress = Math.min(100, Math.floor((elapsed / totalDuration) * 100));
+      setProgress(currentProgress);
+
+      if (elapsed < totalDuration) {
+        animId = requestAnimationFrame(tick);
+      } else {
+        // Sequence finished 6.0s
         setProgress(100);
-        setFadeOut(true);
-        setTimeout(() => {
-          if (onComplete) onComplete();
-        }, 400);
-      }
-    }, 30);
+        setElapsedTime(6000);
 
-    return () => clearInterval(interval);
+        // Hold SYSTEM READY briefly (300ms) then transition into portfolio
+        setTimeout(() => {
+          setFadeOut(true);
+          setTimeout(() => {
+            if (onComplete) onComplete();
+          }, 500); // 500ms smooth fade transition
+        }, 300);
+      }
+    };
+
+    animId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animId);
   }, [onComplete]);
+
+  // 1. Cybersecurity character reveal (0.0s - 0.8s = 0 - 800ms)
+  const fullCyber = "CYBERSECURITY";
+  let visibleCyberCount = fullCyber.length;
+  if (elapsedTime < 800) {
+    visibleCyberCount = Math.min(fullCyber.length, Math.floor((elapsedTime / 800) * fullCyber.length) + 1);
+  }
+  const cybersecurityText = fullCyber.slice(0, visibleCyberCount);
+
+  // 2. ACV Logo Scan Line active state (0.5s - 1.8s = 500ms - 1800ms)
+  const isLogoScanning = elapsedTime >= 500 && elapsedTime <= 1800;
+
+  // 3. BUILD · LEARN · EXPLORE activation (1.0s - 3.5s)
+  let activeBuildWord = null;
+  if (elapsedTime >= 1000 && elapsedTime < 1833) {
+    activeBuildWord = 'BUILD';
+  } else if (elapsedTime >= 1833 && elapsedTime < 2666) {
+    activeBuildWord = 'LEARN';
+  } else if (elapsedTime >= 2666 && elapsedTime < 3500) {
+    activeBuildWord = 'EXPLORE';
+  }
+
+  // 4. IDEAS > SKILLS > PROJECTS > BEYOND activation (2.0s - 5.5s)
+  let activeTaglineWord = null;
+  if (elapsedTime >= 2000 && elapsedTime < 2875) {
+    activeTaglineWord = 'IDEAS';
+  } else if (elapsedTime >= 2875 && elapsedTime < 3750) {
+    activeTaglineWord = 'SKILLS';
+  } else if (elapsedTime >= 3750 && elapsedTime < 4625) {
+    activeTaglineWord = 'PROJECTS';
+  } else if (elapsedTime >= 4625 && elapsedTime < 5500) {
+    activeTaglineWord = 'BEYOND';
+  }
+
+  // 5. Final status state (5.7s - 6.0s)
+  const isSystemReady = elapsedTime >= 5700;
+
+  // HUD circumference for radius 108
+  const hudCircumference = 2 * Math.PI * 108;
+  const strokeDashoffset = hudCircumference * (1 - progress / 100);
 
   return (
     <div 
@@ -91,10 +141,10 @@ export default function LoadingScreen({ onComplete }) {
         {/* Middle Row: Left Label + Center HUD & Logo + Right Label */}
         <div className="hud-middle-row">
           
-          {/* Left Side Label */}
+          {/* Left Side Label: CYBERSECURITY with character reveal */}
           <div className="hud-side-label side-left">
             <span className="bracket-top-left">┌</span>
-            <span className="side-text">CYBERSECURITY</span>
+            <span className="side-text char-reveal-text">{cybersecurityText}</span>
             <span className="bracket-bot-right">┘</span>
           </div>
 
@@ -111,18 +161,28 @@ export default function LoadingScreen({ onComplete }) {
             <div className="hud-square-marker-left"></div>
             <div className="hud-square-marker-right"></div>
 
-            {/* Rotating Outer HUD Arc */}
+            {/* Circular Progress HUD Segment (Non-spinning, synchronized stroke progress) */}
             <div className="hud-outer-ring">
               <svg viewBox="0 0 240 240" className="hud-ring-svg">
-                <circle cx="120" cy="120" r="108" fill="none" stroke="rgba(255, 77, 0, 0.2)" strokeWidth="1" />
+                {/* Background Track Circle */}
+                <circle 
+                  cx="120" cy="120" r="108" 
+                  fill="none" 
+                  stroke="rgba(255, 77, 0, 0.15)" 
+                  strokeWidth="1.5" 
+                />
+                {/* Synchronized Circular Progress Segment */}
                 <circle 
                   cx="120" cy="120" r="108" 
                   fill="none" 
                   stroke="#FF4D00" 
                   strokeWidth="2.5" 
-                  strokeDasharray="140 540"
+                  strokeDasharray={hudCircumference}
+                  strokeDashoffset={strokeDashoffset}
                   strokeLinecap="round" 
+                  transform="rotate(-90 120 120)"
                 />
+                {/* Axis Dots */}
                 <circle cx="120" cy="12" r="2.5" fill="#FF4D00" />
                 <circle cx="120" cy="228" r="2.5" fill="#FF4D00" />
               </svg>
@@ -131,19 +191,26 @@ export default function LoadingScreen({ onComplete }) {
             {/* Inner Precision Dashed Circle */}
             <div className="hud-inner-ring"></div>
 
-            {/* Central ACV Logo */}
+            {/* Central ACV Logo with subtle scanning line */}
             <div className="acv-logo-container">
               <img 
                 src={acvLogo} 
                 alt="ACV Logo" 
                 className="acv-logo-img"
               />
+              <div className={`acv-scan-line ${isLogoScanning ? 'is-active' : ''}`}></div>
             </div>
           </div>
 
-          {/* Right Side Label */}
+          {/* Right Side Label: BUILD · LEARN · EXPLORE with sequential activation */}
           <div className="hud-side-label side-right">
-            <span className="side-text">BUILD · LEARN · EXPLORE</span>
+            <span className="side-text">
+              <span className={`hud-word ${activeBuildWord === 'BUILD' ? 'word-active' : ''}`}>BUILD</span>
+              <span className="sep-dot"> · </span>
+              <span className={`hud-word ${activeBuildWord === 'LEARN' ? 'word-active' : ''}`}>LEARN</span>
+              <span className="sep-dot"> · </span>
+              <span className={`hud-word ${activeBuildWord === 'EXPLORE' ? 'word-active' : ''}`}>EXPLORE</span>
+            </span>
             <span className="bracket-top-right">┐</span>
             <span className="bracket-bot-right">┘</span>
           </div>
@@ -151,6 +218,11 @@ export default function LoadingScreen({ onComplete }) {
 
         {/* Progress Section */}
         <div className="loading-progress-block">
+          {/* Subtle SYSTEM READY status indicator (appears 5.7s - 6.0s) */}
+          <div className={`system-status-text ${isSystemReady ? 'is-visible' : ''}`}>
+            {isSystemReady ? '[ SYSTEM READY ]' : ''}
+          </div>
+
           <div className="progress-bar-container">
             {/* Left Brackets */}
             <span className="bracket-corner bracket-tl">┌</span>
@@ -175,11 +247,17 @@ export default function LoadingScreen({ onComplete }) {
           </div>
         </div>
 
-        {/* Bottom Tagline */}
+        {/* Bottom Tagline: IDEAS > SKILLS > PROJECTS > BEYOND with sequential activation */}
         <div className="loading-tagline-block">
           <span className="bracket-corner bracket-tl">┌</span>
           <span className="tagline-content">
-            IDEAS <span className="accent-gt">&gt;</span> SKILLS <span className="accent-gt">&gt;</span> PROJECTS <span className="accent-gt">&gt;</span> BEYOND
+            <span className={`tagline-word ${activeTaglineWord === 'IDEAS' ? 'word-active' : ''}`}>IDEAS</span>
+            <span className="accent-gt"> &gt; </span>
+            <span className={`tagline-word ${activeTaglineWord === 'SKILLS' ? 'word-active' : ''}`}>SKILLS</span>
+            <span className="accent-gt"> &gt; </span>
+            <span className={`tagline-word ${activeTaglineWord === 'PROJECTS' ? 'word-active' : ''}`}>PROJECTS</span>
+            <span className="accent-gt"> &gt; </span>
+            <span className={`tagline-word ${activeTaglineWord === 'BEYOND' ? 'word-active' : ''}`}>BEYOND</span>
           </span>
           <span className="bracket-corner bracket-br">┘</span>
         </div>

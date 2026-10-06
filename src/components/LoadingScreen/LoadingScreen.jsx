@@ -246,6 +246,12 @@ export default function LoadingScreen({ onComplete }) {
             <span className="bracket-corner bracket-tr">┐</span>
             <span className="bracket-corner bracket-br">┘</span>
           </div>
+        {/* Mobile-Only System Notice (Sits above IDEAS > SKILLS > PROJECTS > BEYOND) */}
+        <div className={`mobile-system-notice ${elapsedTime >= 1200 ? 'is-animated' : ''}`}>
+          <span className="notice-badge">[ SYSTEM NOTICE ]</span>
+          <span className="notice-text">DESKTOP MODE RECOMMENDED</span>
+          <span className="notice-slash">//</span>
+          <span className="notice-text muted">FULL EXPERIENCE AHEAD</span>
         </div>
 
         {/* Bottom Tagline: IDEAS > SKILLS > PROJECTS > BEYOND with sequential activation */}

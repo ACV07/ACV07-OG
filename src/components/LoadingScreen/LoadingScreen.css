@@ -429,6 +429,11 @@
   right: -4px;
 }
 
+/* Mobile System Notice (Hidden by default on Desktop) */
+.mobile-system-notice {
+  display: none !important;
+}
+
 /* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   .hud-outer-ring {
@@ -563,5 +568,52 @@
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
+  }
+
+  /* Mobile-Only System Notice (Sits above IDEAS > SKILLS > PROJECTS > BEYOND) */
+  .mobile-system-notice {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem 0.45rem;
+    font-family: var(--font-mono, monospace);
+    font-size: clamp(9px, 2.7vw, 11px);
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 92vw;
+    margin: 0.2rem auto 0;
+    padding: 0.2rem 0.5rem;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .mobile-system-notice.is-animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .notice-badge {
+    color: var(--accent-orange, #FF4D00);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .notice-text {
+    color: var(--text-primary, #F2F0EA);
+    font-weight: 600;
+  }
+
+  .notice-text.muted {
+    color: var(--text-muted, #999999);
+  }
+
+  .notice-slash {
+    color: var(--accent-orange, #FF4D00);
+    font-weight: 700;
   }
 }

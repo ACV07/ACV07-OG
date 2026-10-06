@@ -70,8 +70,12 @@ export default function Navigation() {
       // Show Right Navigation Rail ONLY when user enters Profile or below (01 Profile -> 08 Contact)
       const profileEl = document.getElementById('profile');
       if (profileEl) {
-        const profileTop = getSectionTargetTop('profile') - window.innerHeight * 0.4;
-        setIsRailVisible(window.scrollY >= profileTop);
+        const profileTop = getSectionTargetTop('profile') - window.innerHeight * 0.45;
+        const isPastName = window.scrollY >= profileTop;
+        setIsRailVisible(isPastName);
+        if (!isPastName && !isNavigatingRef.current) {
+          setActiveSection('profile');
+        }
       } else {
         setIsRailVisible(window.scrollY > 300);
       }

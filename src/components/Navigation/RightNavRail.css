@@ -254,20 +254,23 @@
     bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
     left: 50% !important;
     right: auto !important;
-    transform: translateX(-50%) !important;
+    transform: translateX(-50%) translateY(14px) !important;
     width: calc(100vw - 24px) !important;
     max-width: 440px !important;
     height: 56px !important;
     z-index: 99999 !important;
     display: block !important;
-    pointer-events: auto !important;
-    opacity: 1 !important;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none !important;
+    opacity: 0 !important;
+    visibility: hidden;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s !important;
   }
 
   .liquid-glass-rail-root.is-visible {
     opacity: 1 !important;
+    visibility: visible !important;
     pointer-events: auto !important;
+    transform: translateX(-50%) translateY(0) !important;
   }
 
   .liquid-glass-rail-container {
@@ -412,5 +415,94 @@
 
   .glass-rail-tooltip {
     display: none !important;
+  }
+
+  /* Mobile Light Theme Liquid Glass Navigation */
+  [data-theme="dossier-light"] .liquid-glass-rail-container,
+  [data-theme="light"] .liquid-glass-rail-container,
+  [data-theme*="light"] .liquid-glass-rail-container {
+    background: rgba(245, 243, 238, 0.85) !important;
+    backdrop-filter: blur(24px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.08),
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.95),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  [data-theme="dossier-light"] .rail-connecting-axis,
+  [data-theme="light"] .rail-connecting-axis,
+  [data-theme*="light"] .rail-connecting-axis {
+    background: rgba(0, 0, 0, 0.08) !important;
+  }
+
+  [data-theme="dossier-light"] .axis-node-dot,
+  [data-theme="light"] .axis-node-dot,
+  [data-theme*="light"] .axis-node-dot {
+    background: rgba(0, 0, 0, 0.22) !important;
+  }
+
+  [data-theme="dossier-light"] .axis-node-dot.is-active-dot,
+  [data-theme="light"] .axis-node-dot.is-active-dot,
+  [data-theme*="light"] .axis-node-dot.is-active-dot {
+    background: var(--accent-orange, #FF4D00) !important;
+    box-shadow: 0 0 6px var(--accent-orange, #FF4D00) !important;
+  }
+
+  [data-theme="dossier-light"] .liquid-glass-lens,
+  [data-theme="light"] .liquid-glass-lens,
+  [data-theme*="light"] .liquid-glass-lens {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(245, 243, 238, 0.65) 50%, rgba(255, 77, 0, 0.09) 100%) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    backdrop-filter: blur(14px) contrast(110%) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(14px) contrast(110%) saturate(120%) !important;
+    box-shadow: 
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.98),
+      inset 0 -1.5px 2px rgba(255, 77, 0, 0.18),
+      0 4px 14px rgba(0, 0, 0, 0.08),
+      0 0 8px rgba(255, 77, 0, 0.2) !important;
+  }
+
+  [data-theme="dossier-light"] .liquid-glass-lens.is-dragging,
+  [data-theme="light"] .liquid-glass-lens.is-dragging,
+  [data-theme*="light"] .liquid-glass-lens.is-dragging {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 243, 238, 0.75) 50%, rgba(255, 77, 0, 0.14) 100%) !important;
+    border-color: rgba(0, 0, 0, 0.18) !important;
+    box-shadow: 
+      inset 0 2px 3px #FFFFFF,
+      inset 0 -2px 3px rgba(255, 77, 0, 0.25),
+      0 6px 18px rgba(0, 0, 0, 0.12),
+      0 0 12px rgba(255, 77, 0, 0.28) !important;
+  }
+
+  [data-theme="dossier-light"] .rail-icon-btn,
+  [data-theme="light"] .rail-icon-btn,
+  [data-theme*="light"] .rail-icon-btn {
+    color: rgba(30, 30, 30, 0.62) !important;
+  }
+
+  [data-theme="dossier-light"] .rail-icon-btn svg,
+  [data-theme="light"] .rail-icon-btn svg,
+  [data-theme*="light"] .rail-icon-btn svg {
+    stroke: currentColor !important;
+  }
+
+  [data-theme="dossier-light"] .rail-icon-btn.is-active,
+  [data-theme="light"] .rail-icon-btn.is-active,
+  [data-theme*="light"] .rail-icon-btn.is-active,
+  [data-theme="dossier-light"] .rail-icon-btn.is-magnified,
+  [data-theme="light"] .rail-icon-btn.is-magnified,
+  [data-theme*="light"] .rail-icon-btn.is-magnified {
+    color: #0A0A0A !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="dossier-light"] .rail-icon-btn.is-magnified svg,
+  [data-theme="light"] .rail-icon-btn.is-magnified svg,
+  [data-theme*="light"] .rail-icon-btn.is-magnified svg {
+    stroke: #0A0A0A !important;
+    stroke-width: 2.1 !important;
+    filter: drop-shadow(0 0 4px rgba(255, 77, 0, 0.35)) !important;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoadingScreen from '../components/LoadingScreen/LoadingScreen';
 import Navigation from '../components/Navigation/Navigation';
 import Hero from '../components/Hero/Hero';

@@ -18,6 +18,10 @@ export default function Navigation() {
     }
   });
 
+  const isNavigatingRef = useRef(false);
+  const targetNavIdRef = useRef(null);
+  const navLockTimerRef = useRef(null);
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
@@ -45,7 +49,6 @@ export default function Navigation() {
       const stackTop = stackContainer.getBoundingClientRect().top + window.scrollY;
       const children = Array.from(stackContainer.children);
 
-      // Find index of the stack-section-wrapper that contains or is the target element
       const index = children.findIndex(child => child === element || child.contains(element));
 
       if (index !== -1) {
@@ -73,6 +76,19 @@ export default function Navigation() {
         setIsRailVisible(window.scrollY > 300);
       }
 
+      // If programmatic navigation is active, suppress intermediate scroll-spy updates
+      if (isNavigatingRef.current && targetNavIdRef.current) {
+        const targetTop = getSectionTargetTop(targetNavIdRef.current);
+        const dist = Math.abs(window.scrollY - targetTop);
+        if (dist <= 40) {
+          isNavigatingRef.current = false;
+          targetNavIdRef.current = null;
+          if (navLockTimerRef.current) clearTimeout(navLockTimerRef.current);
+        } else {
+          return;
+        }
+      }
+
       // Detect current active section based on current scroll position
       const scrollPos = window.scrollY + window.innerHeight * 0.35;
 
@@ -88,7 +104,10 @@ export default function Navigation() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (navLockTimerRef.current) clearTimeout(navLockTimerRef.current);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -102,8 +121,22 @@ export default function Navigation() {
 
   const scrollTo = (id) => {
     setMobileMenuOpen(false);
-    const targetTop = getSectionTargetTop(id);
 
+    // Immediately commit target section state and lock it during smooth scroll
+    setActiveSection(id);
+    isNavigatingRef.current = true;
+    targetNavIdRef.current = id;
+
+    if (navLockTimerRef.current) {
+      clearTimeout(navLockTimerRef.current);
+    }
+
+    navLockTimerRef.current = setTimeout(() => {
+      isNavigatingRef.current = false;
+      targetNavIdRef.current = null;
+    }, 900);
+
+    const targetTop = getSectionTargetTop(id);
     window.scrollTo({
       top: Math.max(0, targetTop),
       behavior: 'smooth'

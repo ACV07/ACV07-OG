@@ -188,10 +188,10 @@
     height: 100svh !important;
     min-height: 100svh !important;
     max-height: 100svh !important;
-    padding-top: calc(0.35rem + env(safe-area-inset-top, 0px)) !important;
-    padding-bottom: calc(56px + 0.65rem + env(safe-area-inset-bottom, 0px)) !important;
-    padding-left: clamp(1rem, 4vw, 1.35rem) !important;
-    padding-right: clamp(1rem, 4vw, 1.35rem) !important;
+    padding-top: calc(0.2rem + env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px)) !important;
+    padding-left: clamp(0.75rem, 3.5vw, 1.25rem) !important;
+    padding-right: clamp(0.75rem, 3.5vw, 1.25rem) !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
@@ -205,48 +205,51 @@
     flex-direction: column !important;
     justify-content: space-between !important;
     padding: 0 !important;
+    gap: 0.2rem !important;
   }
 
   /* Compact Mobile Header */
   .editorial-learning .section-editorial-header {
-    padding: 0.2rem 0 !important;
-    margin-bottom: 0.25rem !important;
-    gap: 0.4rem !important;
+    padding: 0.15rem 0 !important;
+    margin-bottom: 0.15rem !important;
+    gap: 0.35rem !important;
     align-items: flex-start !important;
+    flex-shrink: 0 !important;
   }
 
   .editorial-learning .section-number {
-    font-size: 0.65rem !important;
-    letter-spacing: 0.08em !important;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.06em !important;
   }
 
   .editorial-learning .section-title {
-    font-size: clamp(1.05rem, 4.2vw, 1.35rem) !important;
+    font-size: clamp(0.95rem, 3.8vw, 1.25rem) !important;
     line-height: 1.05 !important;
     letter-spacing: -0.02em !important;
   }
 
   .editorial-learning .section-meta {
-    font-size: 0.58rem !important;
-    line-height: 1.2 !important;
-    max-width: 130px !important;
+    font-size: 0.54rem !important;
+    line-height: 1.15 !important;
+    max-width: 125px !important;
     text-align: right !important;
   }
 
   /* Compact Mobile In-Progress Status Bar */
   .learning-status-bar {
-    padding: 0.2rem 0.5rem !important;
-    margin-bottom: 0.25rem !important;
+    padding: 0.15rem 0.45rem !important;
+    margin-bottom: 0.15rem !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 0.5rem !important;
+    gap: 0.35rem !important;
     border-radius: 2px !important;
+    flex-shrink: 0 !important;
   }
 
   .status-badge-wrap {
-    gap: 0.35rem !important;
+    gap: 0.3rem !important;
   }
 
   .live-status-pulse {
@@ -255,34 +258,40 @@
   }
 
   .status-badge-text {
-    font-size: 0.62rem !important;
-    letter-spacing: 0.06em !important;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.05em !important;
   }
 
   .status-meta {
-    font-size: 0.6rem !important;
+    font-size: 0.55rem !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
 
-  /* 3 Learning Modules Grid */
+  /* 3 Equal-Height Learning Modules Grid */
   .learning-modules-grid {
     grid-template-columns: 1fr !important;
-    gap: 0.3rem !important;
+    gap: 0.25rem !important;
     margin: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
-    flex-grow: 1 !important;
+    flex: 1 1 0px !important;
+    min-height: 0 !important;
   }
 
   .learning-module-card {
-    padding: 0.3rem 0.55rem !important;
-    gap: 0.15rem !important;
+    flex: 1 1 0px !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0.2rem 0.45rem !important;
+    gap: 0.08rem !important;
     border-radius: 2px !important;
+    display: flex !important;
+    flex-direction: column !important;
     justify-content: space-between !important;
-    flex-grow: 1 !important;
+    box-sizing: border-box !important;
   }
 
   .learning-module-card:nth-child(3) {
@@ -290,20 +299,24 @@
   }
 
   .module-card-header {
-    padding-bottom: 0.1rem !important;
+    padding-bottom: 0.05rem !important;
+    flex-shrink: 0 !important;
   }
 
   .module-title {
-    font-size: clamp(0.72rem, 3.2vw, 0.82rem) !important;
-    line-height: 1.1 !important;
+    font-size: clamp(0.68rem, 2.9vw, 0.78rem) !important;
+    line-height: 1.05 !important;
     white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .module-description {
-    font-size: 0.62rem !important;
-    line-height: 1.25 !important;
+    font-size: 0.58rem !important;
+    line-height: 1.15 !important;
     min-height: auto !important;
     margin: 0 !important;
+    flex-shrink: 0 !important;
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
@@ -311,34 +324,41 @@
   }
 
   .working-model-frame {
-    min-height: 32px !important;
-    max-height: 42px !important;
-    height: 36px !important;
-    padding: 0.1rem 0.25rem !important;
-    margin: 0.1rem 0 !important;
+    flex: 1 1 0px !important;
+    min-height: 18px !important;
+    max-height: 32px !important;
+    height: 26px !important;
+    padding: 0.05rem 0.2rem !important;
+    margin: 0.05rem 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
   }
 
   .diagram-wrapper {
     height: 100% !important;
+    width: 100% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
   }
 
   .cyber-diagram-svg {
-    max-height: 32px !important;
-    height: 32px !important;
+    max-height: 26px !important;
+    height: 26px !important;
     width: 100% !important;
     object-fit: contain !important;
   }
 
   .module-footer-meta {
-    padding-top: 0.1rem !important;
-    font-size: 0.58rem !important;
+    padding-top: 0.05rem !important;
+    font-size: 0.54rem !important;
+    flex-shrink: 0 !important;
   }
 
   .module-footer-meta .mono-label {
-    font-size: 0.56rem !important;
-    letter-spacing: 0.04em !important;
+    font-size: 0.52rem !important;
+    letter-spacing: 0.03em !important;
   }
 }

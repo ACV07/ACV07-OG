@@ -70,7 +70,7 @@ const AnimatedPathDots = ({ pathId, d, duration = 3, count = 2 }) => {
 // ----------------------------------------------------
 export const SplunkDiagram = () => {
   return (
-    <svg viewBox="0 0 960 260" className="cyber-diagram-svg" width="100%" height="100%">
+    <svg viewBox="20 18 870 214" className="cyber-diagram-svg" width="100%" height="100%">
       <SharedSvgDefs />
 
       {/* --- CONNECTING PATHS --- */}
@@ -88,28 +88,28 @@ export const SplunkDiagram = () => {
       {/* --- NODE 1: UNIVERSAL FORWARDER (Laptop) --- */}
       <g transform="translate(80, 120)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Laptop Icon */}
         <path d="M -12 -6 L 12 -6 L 12 6 L -12 6 Z M -16 8 L 16 8 L 14 10 L -14 10 Z" fill="none" stroke="#FF4D00" strokeWidth="1.8" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700" letterSpacing="0.05em">FORWARDER</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="9" fontFamily="var(--font-mono)">LOG AGENT</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700" letterSpacing="0.05em">FORWARDER</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="9" fontFamily="var(--font-mono)">LOG AGENT</text>
       </g>
 
       {/* --- NODE 2: INDEXER (Terminal >_) --- */}
       <g transform="translate(340, 120)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Terminal Icon */}
         <rect x="-13" y="-10" width="26" height="20" rx="2" fill="none" stroke="#FF4D00" strokeWidth="1.8" />
         <path d="M -8 -4 L -3 0 L -8 4 M -1 4 L 6 4" fill="none" stroke="#FF4D00" strokeWidth="1.8" strokeLinecap="round" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700" letterSpacing="0.05em">INDEXER</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="9" fontFamily="var(--font-mono)">PARSE & INDEX</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700" letterSpacing="0.05em">INDEXER</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="9" fontFamily="var(--font-mono)">PARSE & INDEX</text>
       </g>
 
       {/* --- NODE 3: SEARCH HEAD (Server Racks) --- */}
       <g transform="translate(600, 120)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Server Icon */}
         <rect x="-12" y="-12" width="24" height="6" rx="1" fill="none" stroke="#FF4D00" strokeWidth="1.5" />
         <rect x="-12" y="-3" width="24" height="6" rx="1" fill="none" stroke="#FF4D00" strokeWidth="1.5" />
@@ -117,38 +117,38 @@ export const SplunkDiagram = () => {
         <circle cx="6" cy="-9" r="1" fill="#FF4D00" />
         <circle cx="6" cy="0" r="1" fill="#FF4D00" />
         <circle cx="6" cy="9" r="1" fill="#FF4D00" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700" letterSpacing="0.05em">SEARCH HEAD</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="9" fontFamily="var(--font-mono)">ANALYTICS ENGINE</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700" letterSpacing="0.05em">SEARCH HEAD</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="9" fontFamily="var(--font-mono)">ANALYTICS ENGINE</text>
       </g>
 
       {/* --- OUTPUT ENDPOINTS --- */}
       {/* Endpoint A: Dashboard */}
       <g transform="translate(830, 45)">
-        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <rect x="-43" y="-8" width="14" height="16" rx="1" fill="none" stroke="#FF4D00" strokeWidth="1.4" />
         <path d="M -40 -3 H -32 M -40 2 H -34" stroke="#FF4D00" strokeWidth="1.4" />
-        <text x="-22" y="3" fill="#F2F0EA" fontSize="9.5" fontFamily="var(--font-mono)" fontWeight="700">DASHBOARD</text>
-        <text x="-22" y="13" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">REALTIME UI</text>
+        <text x="-22" y="3" fill="var(--text-primary, #F2F0EA)" fontSize="9.5" fontFamily="var(--font-mono)" fontWeight="700">DASHBOARD</text>
+        <text x="-22" y="13" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">REALTIME UI</text>
       </g>
 
       {/* Endpoint B: Security SIEM */}
       <g transform="translate(830, 120)">
-        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         {/* Firewall / Shield Icon */}
         <path d="M -43 -7 L -36 -10 L -29 -7 L -29 0 C -29 6, -36 9, -36 9 C -36 9, -43 6, -43 0 Z" fill="none" stroke="#FF4D00" strokeWidth="1.4" />
-        <text x="-22" y="3" fill="#F2F0EA" fontSize="9.5" fontFamily="var(--font-mono)" fontWeight="700">SIEM ALERTS</text>
-        <text x="-22" y="13" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">THREAT MON</text>
+        <text x="-22" y="3" fill="var(--text-primary, #F2F0EA)" fontSize="9.5" fontFamily="var(--font-mono)" fontWeight="700">SIEM ALERTS</text>
+        <text x="-22" y="13" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">THREAT MON</text>
       </g>
 
       {/* Endpoint C: API Export */}
       <g transform="translate(830, 195)">
-        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         {/* Globe Icon */}
         <circle cx="-36" cy="0" r="7" fill="none" stroke="#FF4D00" strokeWidth="1.4" />
         <ellipse cx="-36" cy="0" rx="3" ry="7" fill="none" stroke="#FF4D00" strokeWidth="1" />
         <path d="M -43 0 H -29" stroke="#FF4D00" strokeWidth="1" />
-        <text x="-22" y="3" fill="#F2F0EA" fontSize="9.5" fontFamily="var(--font-mono)" fontWeight="700">API EXPORT</text>
-        <text x="-22" y="13" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">REST / DATA</text>
+        <text x="-22" y="3" fill="var(--text-primary, #F2F0EA)" fontSize="9.5" fontFamily="var(--font-mono)" fontWeight="700">API EXPORT</text>
+        <text x="-22" y="13" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">REST / DATA</text>
       </g>
     </svg>
   );
@@ -159,7 +159,7 @@ export const SplunkDiagram = () => {
 // ----------------------------------------------------
 export const WiresharkDiagram = () => {
   return (
-    <svg viewBox="0 0 960 280" className="cyber-diagram-svg" width="100%" height="100%">
+    <svg viewBox="20 18 910 226" className="cyber-diagram-svg" width="100%" height="100%">
       <SharedSvgDefs />
 
       {/* --- INPUT PATHS MERGING INTO CAPTURE --- */}
@@ -179,86 +179,86 @@ export const WiresharkDiagram = () => {
       {/* --- LEFT INPUT BADGES --- */}
       {/* Client */}
       <g transform="translate(85, 45)">
-        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <path d="M -43 -6 L -29 -6 L -29 4 L -43 4 Z M -45 6 L -27 6" fill="none" stroke="#FF4D00" strokeWidth="1.4" />
-        <text x="-20" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">CLIENT</text>
-        <text x="-20" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">USER TRAFFIC</text>
+        <text x="-20" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">CLIENT</text>
+        <text x="-20" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">USER TRAFFIC</text>
       </g>
       {/* Server */}
       <g transform="translate(85, 130)">
-        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <rect x="-43" y="-10" width="16" height="5" rx="1" fill="none" stroke="#FF4D00" strokeWidth="1.2" />
         <rect x="-43" y="-3" width="16" height="5" rx="1" fill="none" stroke="#FF4D00" strokeWidth="1.2" />
         <rect x="-43" y="4" width="16" height="5" rx="1" fill="none" stroke="#FF4D00" strokeWidth="1.2" />
-        <text x="-20" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">SERVER</text>
-        <text x="-20" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">NET TRAFFIC</text>
+        <text x="-20" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">SERVER</text>
+        <text x="-20" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">NET TRAFFIC</text>
       </g>
       {/* Internet */}
       <g transform="translate(85, 215)">
-        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-55" y="-18" width="110" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <circle cx="-36" cy="0" r="7" fill="none" stroke="#FF4D00" strokeWidth="1.4" />
         <ellipse cx="-36" cy="0" rx="3" ry="7" fill="none" stroke="#FF4D00" strokeWidth="1" />
-        <text x="-20" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">INTERNET</text>
-        <text x="-20" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">WAN TRAFFIC</text>
+        <text x="-20" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">INTERNET</text>
+        <text x="-20" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">WAN TRAFFIC</text>
       </g>
 
       {/* --- CENTRAL PROCESS NODES --- */}
       {/* Node 1: Packet Capture */}
       <g transform="translate(290, 130)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Document Icon */}
         <path d="M -10 -12 H 4 L 10 -6 V 12 H -10 Z M 4 -12 V -6 H 10" fill="none" stroke="#FF4D00" strokeWidth="1.5" />
         <path d="M -5 0 H 5 M -5 4 H 3" stroke="#FF4D00" strokeWidth="1.2" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">CAPTURE</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="8.5" fontFamily="var(--font-mono)">LIVE SNIFFER</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">CAPTURE</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="8.5" fontFamily="var(--font-mono)">LIVE SNIFFER</text>
       </g>
 
       {/* Node 2: Wireshark Fin */}
       <g transform="translate(480, 130)">
         <circle r="38" fill="none" stroke="rgba(255, 77, 0, 0.5)" strokeWidth="1.2" strokeDasharray="4,4" />
-        <circle r="32" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2.2" filter="url(#cyber-glow)" />
+        <circle r="32" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2.2" filter="url(#cyber-glow)" />
         {/* Shark Fin Icon */}
         <path d="M -14 10 Q -4 -16 14 -12 C 4 -2 0 6 -14 10 Z" fill="none" stroke="#FF4D00" strokeWidth="1.8" />
         <path d="M -14 10 H 14" stroke="#FF4D00" strokeWidth="1.2" />
-        <text y="52" textAnchor="middle" fill="#F2F0EA" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700">WIRESHARK</text>
-        <text y="66" textAnchor="middle" fill="#888888" fontSize="8.5" fontFamily="var(--font-mono)">DECODER ENGINE</text>
+        <text y="52" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="11" fontFamily="var(--font-mono)" fontWeight="700">WIRESHARK</text>
+        <text y="66" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="8.5" fontFamily="var(--font-mono)">DECODER ENGINE</text>
       </g>
 
       {/* Node 3: Packet View */}
       <g transform="translate(670, 130)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Inspect Search Icon */}
         <circle cx="-2" cy="-2" r="7" fill="none" stroke="#FF4D00" strokeWidth="1.5" />
         <path d="M 3 3 L 10 10" stroke="#FF4D00" strokeWidth="2" strokeLinecap="round" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">INSPECTOR</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="8.5" fontFamily="var(--font-mono)">REALTIME DISPLAY</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">INSPECTOR</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="8.5" fontFamily="var(--font-mono)">REALTIME DISPLAY</text>
       </g>
 
       {/* --- RIGHT OUTPUT BADGES --- */}
       {/* Protocol Analysis */}
       <g transform="translate(865, 45)">
-        <rect x="-60" y="-18" width="120" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-60" y="-18" width="120" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <path d="M -50 6 V -2 M -44 6 V -8 M -38 6 V 2" stroke="#FF4D00" strokeWidth="1.8" strokeLinecap="round" />
-        <text x="-26" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">PROTOCOLS</text>
-        <text x="-26" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">HTTP/DNS/TCP</text>
+        <text x="-26" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">PROTOCOLS</text>
+        <text x="-26" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">HTTP/DNS/TCP</text>
       </g>
 
       {/* Packet Details */}
       <g transform="translate(865, 130)">
-        <rect x="-60" y="-18" width="120" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-60" y="-18" width="120" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <path d="M -50 -8 H -38 V 8 H -50 Z M -46 -4 H -40 M -46 0 H -42" stroke="#FF4D00" strokeWidth="1.3" fill="none" />
-        <text x="-26" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">DETAILS</text>
-        <text x="-26" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">HEX / PAYLOAD</text>
+        <text x="-26" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">DETAILS</text>
+        <text x="-26" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">HEX / PAYLOAD</text>
       </g>
 
       {/* Troubleshoot */}
       <g transform="translate(865, 215)">
-        <rect x="-60" y="-18" width="120" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-60" y="-18" width="120" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <path d="M -44 7 L -34 -9 L -24 7 Z M -34 -2 V 2 M -34 4 V 5" fill="none" stroke="#FF4D00" strokeWidth="1.4" strokeLinejoin="round" />
-        <text x="-18" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">MONITOR</text>
-        <text x="-18" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">TROUBLESHOOT</text>
+        <text x="-18" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">MONITOR</text>
+        <text x="-18" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">TROUBLESHOOT</text>
       </g>
     </svg>
   );
@@ -269,7 +269,7 @@ export const WiresharkDiagram = () => {
 // ----------------------------------------------------
 export const NmapDiagram = () => {
   return (
-    <svg viewBox="0 0 960 260" className="cyber-diagram-svg" width="100%" height="100%">
+    <svg viewBox="25 18 920 214" className="cyber-diagram-svg" width="100%" height="100%">
       <SharedSvgDefs />
 
       {/* --- CONNECTING PATHS --- */}
@@ -285,72 +285,72 @@ export const NmapDiagram = () => {
       {/* --- STAGE 1: TARGET --- */}
       <g transform="translate(75, 120)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Target Reticle */}
         <circle cx="0" cy="0" r="10" fill="none" stroke="#FF4D00" strokeWidth="1.5" />
         <path d="M -14 0 H -6 M 6 0 H 14 M 0 -14 V -6 M 0 6 V 14" stroke="#FF4D00" strokeWidth="1.5" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">TARGET</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="8.5" fontFamily="var(--font-mono)">IP / DOMAIN</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">TARGET</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="8.5" fontFamily="var(--font-mono)">IP / DOMAIN</text>
       </g>
 
       {/* --- STAGE 2: NMAP PROBE SCAN --- */}
       <g transform="translate(300, 120)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Terminal Icon */}
         <rect x="-12" y="-9" width="24" height="18" rx="2" fill="none" stroke="#FF4D00" strokeWidth="1.6" />
         <path d="M -7 -4 L -3 0 L -7 4 M -1 4 L 5 4" fill="none" stroke="#FF4D00" strokeWidth="1.6" strokeLinecap="round" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">PROBE SCAN</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="8.5" fontFamily="var(--font-mono)">SYN / ACK PACKETS</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">PROBE SCAN</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="8.5" fontFamily="var(--font-mono)">SYN / ACK PACKETS</text>
       </g>
 
       {/* --- STAGE 3: RESPONSE --- */}
       <g transform="translate(530, 120)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Server Response Icon */}
         <rect x="-12" y="-10" width="24" height="20" rx="2" fill="none" stroke="#FF4D00" strokeWidth="1.5" />
         <path d="M -8 -4 H 8 M -8 0 H 4 M -8 4 H 8" stroke="#FF4D00" strokeWidth="1.4" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">RESPONSE</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="8.5" fontFamily="var(--font-mono)">PORT STATUS</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">RESPONSE</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="8.5" fontFamily="var(--font-mono)">PORT STATUS</text>
       </g>
 
       {/* --- STAGE 4: SCAN RESULTS --- */}
       <g transform="translate(750, 120)">
         <circle r="36" fill="none" stroke="rgba(255, 77, 0, 0.4)" strokeWidth="1" strokeDasharray="3,3" />
-        <circle r="30" fill="#0A0A0A" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
+        <circle r="30" fill="var(--bg-card, #0A0A0A)" stroke="#FF4D00" strokeWidth="2" filter="url(#cyber-glow)" />
         {/* Doc List Icon */}
         <path d="M -9 -11 H 3 L 9 -5 V 11 H -9 Z" fill="none" stroke="#FF4D00" strokeWidth="1.5" />
         <path d="M -4 -3 H 4 M -4 1 H 4 M -4 5 H 1" stroke="#FF4D00" strokeWidth="1.2" />
-        <text y="50" textAnchor="middle" fill="#F2F0EA" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">RESULTS</text>
-        <text y="64" textAnchor="middle" fill="#888888" fontSize="8.5" fontFamily="var(--font-mono)">SERVICE ENUM</text>
+        <text y="50" textAnchor="middle" fill="var(--text-primary, #F2F0EA)" fontSize="10.5" fontFamily="var(--font-mono)" fontWeight="700">RESULTS</text>
+        <text y="64" textAnchor="middle" fill="var(--text-muted, #888888)" fontSize="8.5" fontFamily="var(--font-mono)">SERVICE ENUM</text>
       </g>
 
       {/* --- RIGHT OUTPUT BADGES --- */}
       {/* Open Ports */}
       <g transform="translate(890, 45)">
-        <rect x="-50" y="-18" width="100" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-50" y="-18" width="100" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <circle cx="-34" cy="0" r="6" fill="none" stroke="#FF4D00" strokeWidth="1.4" />
         <path d="M -37 0 L -35 2 L -31 -2" fill="none" stroke="#FF4D00" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        <text x="-22" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">OPEN PORTS</text>
-        <text x="-22" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">22, 80, 443</text>
+        <text x="-22" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">OPEN PORTS</text>
+        <text x="-22" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">22, 80, 443</text>
       </g>
 
       {/* Services */}
       <g transform="translate(890, 120)">
-        <rect x="-50" y="-18" width="100" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-50" y="-18" width="100" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <circle cx="-34" cy="0" r="5" fill="none" stroke="#FF4D00" strokeWidth="1.4" />
         <path d="M -34 -8 V -6 M -34 6 V 8 M -42 0 H -40 M -28 0 H -26" stroke="#FF4D00" strokeWidth="1.4" />
-        <text x="-22" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">SERVICES</text>
-        <text x="-22" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">SSH, HTTP, TLS</text>
+        <text x="-22" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">SERVICES</text>
+        <text x="-22" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">SSH, HTTP, TLS</text>
       </g>
 
       {/* OS Fingerprint */}
       <g transform="translate(890, 195)">
-        <rect x="-50" y="-18" width="100" height="36" rx="3" fill="#0E0E0E" stroke="#FF4D00" strokeWidth="1.2" />
+        <rect x="-50" y="-18" width="100" height="36" rx="3" fill="var(--bg-secondary, #0E0E0E)" stroke="#FF4D00" strokeWidth="1.2" />
         <path d="M -39 -7 L -34 -9 L -29 -7 L -29 -1 C -29 4, -34 7, -34 7 C -34 7, -39 4, -39 -1 Z" fill="none" stroke="#FF4D00" strokeWidth="1.3" />
-        <text x="-22" y="2" fill="#F2F0EA" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">OS DETECT</text>
-        <text x="-22" y="12" fill="#888888" fontSize="7.5" fontFamily="var(--font-mono)">LINUX / WIN</text>
+        <text x="-22" y="2" fill="var(--text-primary, #F2F0EA)" fontSize="9" fontFamily="var(--font-mono)" fontWeight="700">OS DETECT</text>
+        <text x="-22" y="12" fill="var(--text-muted, #888888)" fontSize="7.5" fontFamily="var(--font-mono)">LINUX / WIN</text>
       </g>
     </svg>
   );

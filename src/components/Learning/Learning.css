@@ -123,32 +123,32 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  padding: clamp(0.75rem, 1.5vh, 1.25rem);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  background: #060606;
-  overflow: hidden;
+  padding: 0.5rem 0;
+  border: none;
+  background: transparent;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.85);
-  min-height: clamp(240px, 34vh, 340px);
+  box-shadow: none;
+  min-height: auto;
 }
 
 .diagram-wrapper {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  max-width: 100%;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .cyber-diagram-svg {
   width: 100%;
   height: auto;
-  max-height: clamp(240px, 35vh, 340px);
+  max-height: 190px;
   display: block;
 }
 

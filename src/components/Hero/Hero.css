@@ -173,23 +173,39 @@
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
+    align-items: center !important;
     box-sizing: border-box !important;
   }
 
+  /* Position technical header meta block directly above the main name title on mobile */
   .hero-header-meta {
-    padding: 0.45rem 0 !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    padding: 0 !important;
+    margin-top: auto !important;
+    margin-bottom: 0.85rem !important;
     flex-shrink: 0 !important;
+    width: 100% !important;
+  }
+
+  .meta-block {
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+    text-align: center !important;
+    justify-content: center !important;
   }
 
   .meta-val {
     font-size: clamp(0.65rem, 2.2vw, 0.75rem) !important;
+    text-align: center !important;
   }
 
   .hero-main-title {
     align-items: center !important;
     text-align: center !important;
-    margin: auto 0 !important;
-    flex-grow: 1 !important;
+    margin-top: 0 !important;
+    margin-bottom: auto !important;
+    flex-grow: 0 !important;
     justify-content: center !important;
   }
 
@@ -203,6 +219,7 @@
     justify-content: center !important;
     padding-top: 0.5rem !important;
     flex-shrink: 0 !important;
+    width: 100% !important;
   }
 }
 

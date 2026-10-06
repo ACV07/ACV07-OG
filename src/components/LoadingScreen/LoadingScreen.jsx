@@ -246,6 +246,8 @@ export default function LoadingScreen({ onComplete }) {
             <span className="bracket-corner bracket-tr">┐</span>
             <span className="bracket-corner bracket-br">┘</span>
           </div>
+        </div>
+
         {/* Mobile-Only System Notice (Sits above IDEAS > SKILLS > PROJECTS > BEYOND) */}
         <div className={`mobile-system-notice ${elapsedTime >= 1200 ? 'is-animated' : ''}`}>
           <span className="notice-badge">[ SYSTEM NOTICE ]</span>

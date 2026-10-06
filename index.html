@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+    <link rel="icon" type="image/png" href="./assets/acv_logo.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/acv_logo.png" />
+    <link rel="apple-touch-icon" href="./assets/acv_logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ADRIAN CHERIAN // Cybersecurity Dossier & Portfolio</title>
     <meta name="description" content="An editorial cybersecurity dossier / digital field journal of Adrian Cherian — Cloud Security, Ethical Hacking, Systems & Threat Detection Specialist." />
@@ -14,9 +16,14 @@
     <script type="module" src="/src/main.jsx"></script>
     <script>
       (function() {
+        var v = Date.now();
+        var basePath = location.pathname.startsWith('/ACV07-OG') ? '/ACV07-OG/' : '/';
+        var fav = document.querySelector("link[rel*='icon']");
+        if (fav) {
+          fav.href = basePath + 'assets/acv_logo.png?v=' + v;
+        }
+
         if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-          var v = Date.now();
-          var basePath = location.pathname.startsWith('/ACV07-OG') ? '/ACV07-OG/' : '/';
           
           var link = document.createElement('link');
           link.rel = 'stylesheet';

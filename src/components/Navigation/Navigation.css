@@ -297,18 +297,63 @@
   }
 }
 
-@media (max-width: 480px) {
+/* Dedicated Mobile Floating Liquid Glass Navigation Bar (<= 767px) */
+@media (max-width: 767px) {
+  .editorial-nav {
+    top: auto;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 1.75rem);
+    max-width: 460px;
+    height: 56px;
+    border-radius: 9999px;
+    background: rgba(14, 14, 14, 0.72);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.7), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 0 0 1px rgba(0, 0, 0, 0.4);
+    z-index: 100000;
+    transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .editorial-nav.is-scrolled {
+    background: rgba(10, 10, 10, 0.85);
+    border-color: rgba(255, 77, 0, 0.4);
+    box-shadow: 
+      0 12px 36px rgba(0, 0, 0, 0.85), 
+      0 0 16px rgba(255, 77, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  [data-theme="dossier-light"] .editorial-nav {
+    background: rgba(242, 240, 234, 0.82);
+    border-color: rgba(10, 10, 10, 0.18);
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.12), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
   .nav-container {
-    padding: 0 1rem;
+    padding: 0 0.85rem;
+    height: 100%;
     gap: 0.5rem;
   }
 
   .nav-acv-logo {
-    height: 28px;
+    height: 26px;
+  }
+
+  .nav-actions {
+    gap: 0.45rem;
   }
 
   .nav-digital-clock {
-    padding: 0.3rem 0.5rem;
+    padding: 0.25rem 0.45rem;
+    font-size: 0.64rem;
   }
 
   .clock-label {
@@ -316,18 +361,31 @@
   }
 
   .theme-toggle-btn {
-    padding: 0.3rem 0.5rem;
+    padding: 0.25rem 0.45rem;
   }
 
   .theme-text {
-    font-size: 0.62rem;
+    font-size: 0.6rem;
+  }
+
+  .burger-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mobile-menu-overlay {
+    top: 0;
+    bottom: calc(56px + 1.25rem + env(safe-area-inset-bottom, 0px));
+    height: auto;
+    border-top: none;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .mobile-txt {
-    font-size: clamp(1.4rem, 6vw, 1.85rem);
+    font-size: clamp(1.3rem, 5.5vw, 1.75rem);
   }
 
   .mobile-menu-inner {
-    padding: 2rem 1.25rem;
+    padding: 1.5rem 1.25rem;
   }
 }

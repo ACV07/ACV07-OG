@@ -124,8 +124,8 @@
     height: 100svh;
     min-height: 100svh;
     max-height: 100svh;
-    padding-top: calc(var(--header-height, 64px) + env(safe-area-inset-top, 0px) + 0.25rem);
-    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(56px + 1.25rem + env(safe-area-inset-bottom, 0px));
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     box-sizing: border-box;

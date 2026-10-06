@@ -205,6 +205,7 @@ export default function LoadingScreen({ onComplete }) {
 
           {/* Right Side Label: BUILD · LEARN · EXPLORE with sequential activation */}
           <div className="hud-side-label side-right">
+            <span className="bracket-top-left">┌</span>
             <span className="side-text">
               <span className={`hud-word ${activeBuildWord === 'BUILD' ? 'word-active' : ''}`}>BUILD</span>
               <span className="sep-dot"> · </span>
@@ -212,7 +213,6 @@ export default function LoadingScreen({ onComplete }) {
               <span className="sep-dot"> · </span>
               <span className={`hud-word ${activeBuildWord === 'EXPLORE' ? 'word-active' : ''}`}>EXPLORE</span>
             </span>
-            <span className="bracket-top-right">┐</span>
             <span className="bracket-bot-right">┘</span>
           </div>
         </div>

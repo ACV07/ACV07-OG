@@ -191,22 +191,9 @@
     flex-grow: 1 !important;
   }
 
-  /* Position technical header meta block directly above the main name title on mobile */
+  /* Hide technical header meta block on mobile only */
   .hero-header-meta {
-    border-top: none !important;
-    border-bottom: none !important;
-    padding: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0.85rem !important;
-    flex-shrink: 0 !important;
-    width: 100% !important;
-  }
-
-  .meta-block {
-    flex-wrap: wrap !important;
-    gap: 0.35rem !important;
-    text-align: center !important;
-    justify-content: center !important;
+    display: none !important;
   }
 
   .meta-val {

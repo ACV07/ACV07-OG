@@ -144,18 +144,27 @@
   }
 
   .experience-archive-list {
-    gap: 0.45rem;
-    margin: auto 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    flex: 1 1 0px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    margin: 0 !important;
+    gap: clamp(0.35rem, 1vh, 0.65rem) !important;
+    min-height: 0 !important;
+    width: 100% !important;
   }
 
   .experience-archive-row {
+    flex: 1 1 0px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 0 !important;
     grid-template-columns: 1fr;
     gap: 0.25rem;
-    padding: 0.45rem 0.65rem;
+    padding: clamp(0.45rem, 1.2vh, 0.75rem) clamp(0.6rem, 2vw, 0.85rem) !important;
     border-radius: var(--radius-sm);
+    box-sizing: border-box !important;
   }
 
   .exp-col-date {

@@ -151,8 +151,6 @@ export default function LoadingScreen({ onComplete }) {
 
         {/* Progress Section */}
         <div className="loading-progress-block">
-          <div className="progress-title">LOADING PORTFOLIO</div>
-
           <div className="progress-bar-container">
             {/* Left Brackets */}
             <span className="bracket-corner bracket-tl">┌</span>

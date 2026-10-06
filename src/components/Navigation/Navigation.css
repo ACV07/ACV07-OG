@@ -290,7 +290,7 @@
   }
 
   .burger-btn {
-    display: flex;
+    display: none !important;
   }
 
   .brand-tag {

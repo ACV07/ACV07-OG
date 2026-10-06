@@ -135,80 +135,112 @@
 }
 
 @media (max-width: 900px) {
-  .participation-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
-  }
-}
-
-@media (max-width: 767px) {
   .editorial-participation {
-    height: 100svh;
-    min-height: 100svh;
-    max-height: 100svh;
-    padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
-    padding-bottom: calc(56px + 1.25rem + env(safe-area-inset-bottom, 0px));
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+    padding-top: calc(0.35rem + env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: calc(68px + 0.35rem + env(safe-area-inset-bottom, 0px)) !important;
+    padding-left: clamp(0.75rem, 3vw, 1.25rem) !important;
+    padding-right: clamp(0.75rem, 3vw, 1.25rem) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    overflow: hidden !important;
   }
 
   .editorial-participation .container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .editorial-participation .section-editorial-header {
+    padding: 0.25rem 0 !important;
+    margin-bottom: 0.25rem !important;
+    flex-shrink: 0 !important;
+    gap: 0.5rem !important;
+  }
+
+  .editorial-participation .section-title {
+    font-size: clamp(1.15rem, 4.2vw, 1.4rem) !important;
+    line-height: 1 !important;
+  }
+
+  .editorial-participation .section-meta {
+    font-size: 0.56rem !important;
+    line-height: 1.2 !important;
+    max-width: 175px !important;
   }
 
   .participation-grid {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-    margin: auto 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    gap: clamp(0.2rem, 0.7vh, 0.4rem) !important;
+    flex-grow: 1 !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .participation-card {
-    padding: 0.4rem 0.65rem;
-    gap: 0.25rem;
-    border-radius: var(--radius-sm);
+    padding: clamp(0.28rem, 0.7vh, 0.42rem) clamp(0.5rem, 2vw, 0.65rem) !important;
+    gap: clamp(0.1rem, 0.3vh, 0.2rem) !important;
+    border-radius: var(--radius-sm) !important;
+    flex: 1 1 0% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 0 !important;
   }
 
   .part-card-top {
-    padding-bottom: 0.2rem;
+    padding-bottom: 0.1rem !important;
+    gap: 0.4rem !important;
   }
 
   .part-num {
-    font-size: 0.9rem;
+    font-size: clamp(0.78rem, 2.4vw, 0.86rem) !important;
+    line-height: 1 !important;
+  }
+
+  .category-tag {
+    font-size: 0.52rem !important;
+    padding: 0.08rem 0.28rem !important;
+  }
+
+  .part-body {
+    gap: 0.1rem !important;
+    flex-grow: 1 !important;
+    justify-content: center !important;
   }
 
   .part-title {
-    font-size: 0.82rem;
-    line-height: 1.15;
+    font-size: clamp(0.72rem, 2.2vw, 0.8rem) !important;
+    line-height: 1.12 !important;
   }
 
   .part-description {
-    font-size: 0.68rem;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: clamp(0.6rem, 1.8vw, 0.67rem) !important;
+    line-height: 1.2 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
   }
 
   .part-tags {
-    padding-top: 0.2rem;
-    gap: 0.2rem;
+    padding-top: 0.1rem !important;
+    gap: 0.15rem !important;
   }
 
   .tech-outline-tag {
-    font-size: 0.58rem;
-    padding: 0.08rem 0.3rem;
+    font-size: 0.52rem !important;
+    padding: 0.04rem 0.22rem !important;
+    line-height: 1.1 !important;
   }
 }

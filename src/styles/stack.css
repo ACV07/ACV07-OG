@@ -37,6 +37,13 @@
   }
 }
 
+/* Remove heavy stacked section transition shadow on mobile (<= 900px) */
+@media (max-width: 900px) {
+  .stack-section-wrapper {
+    box-shadow: none !important;
+  }
+}
+
 /* Dedicated Mobile Page Stacking System (<= 767px) */
 @media (max-width: 767px) {
   .stack-section-wrapper {
@@ -46,7 +53,7 @@
     min-height: 100svh !important;
     max-height: 100svh !important;
     overflow: hidden !important;
-    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.95) !important;
+    box-shadow: none !important;
     border-top: 1px solid var(--border-color-strong);
     background-color: var(--bg-primary);
   }

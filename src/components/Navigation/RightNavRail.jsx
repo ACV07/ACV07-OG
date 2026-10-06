@@ -61,8 +61,21 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
   const [hoveredId, setHoveredId] = useState(null);
   const [isStretching, setIsStretching] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 900);
+  
+  // Mobile Dragging State
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragX, setDragX] = useState(0);
+  const [dragFloatIndex, setDragFloatIndex] = useState(0);
+
+  const containerRef = useRef(null);
   const prevIndexRef = useRef(0);
   const stretchTimerRef = useRef(null);
+  
+  const pointerDownPosRef = useRef({ x: 0, y: 0 });
+  const isDraggingRef = useRef(false);
+  const slotWidthRef = useRef(0);
+  const startDragXRef = useRef(0);
+  const pointerIdRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -86,45 +99,158 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
     }
   }, [targetIndex]);
 
+  // Handle Mobile Pointer Dragging
+  const handlePointerDown = (e) => {
+    if (!isMobile) return;
+    
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const padding = 8;
+      const slotW = (rect.width - (padding * 2)) / 8;
+      slotWidthRef.current = slotW;
+
+      pointerDownPosRef.current = { x: e.clientX, y: e.clientY };
+      pointerIdRef.current = e.pointerId;
+
+      const currentLensOffset = targetIndex * slotW;
+      startDragXRef.current = currentLensOffset;
+    }
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isMobile || pointerIdRef.current === null) return;
+
+    const dx = e.clientX - pointerDownPosRef.current.x;
+    const dy = e.clientY - pointerDownPosRef.current.y;
+
+    if (!isDraggingRef.current) {
+      if (Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
+        isDraggingRef.current = true;
+        setIsDragging(true);
+        try {
+          e.currentTarget.setPointerCapture(e.pointerId);
+        } catch (err) {}
+      }
+    }
+
+    if (isDraggingRef.current && slotWidthRef.current > 0) {
+      const maxOffset = slotWidthRef.current * 7;
+      const rawX = startDragXRef.current + dx;
+      const clampedX = Math.max(0, Math.min(maxOffset, rawX));
+      
+      setDragX(clampedX);
+      setDragFloatIndex(clampedX / slotWidthRef.current);
+    }
+  };
+
+  const handlePointerUp = (e) => {
+    if (!isMobile) return;
+
+    if (isDraggingRef.current) {
+      const slotW = slotWidthRef.current;
+      if (slotW > 0) {
+        const finalIndex = Math.max(0, Math.min(7, Math.round(dragX / slotW)));
+        const targetItem = navigationItems[finalIndex];
+        if (targetItem) {
+          scrollTo(targetItem.id);
+        }
+      }
+      try {
+        if (pointerIdRef.current !== null && e.currentTarget.hasPointerCapture(pointerIdRef.current)) {
+          e.currentTarget.releasePointerCapture(pointerIdRef.current);
+        }
+      } catch (err) {}
+    }
+
+    pointerIdRef.current = null;
+    isDraggingRef.current = false;
+    setIsDragging(false);
+  };
+
+  const handlePointerCancel = (e) => {
+    handlePointerUp(e);
+  };
+
+  // Determine Lens Style
+  let lensStyle = {};
+  if (isMobile) {
+    if (isDragging) {
+      lensStyle = {
+        transform: `translate3d(${dragX}px, 0, 0) scaleX(1.06) scaleY(0.96)`,
+        transition: 'none'
+      };
+    } else {
+      lensStyle = {
+        transform: `translate3d(calc(${targetIndex} * 100%), 0, 0) scaleX(${isStretching ? 1.14 : 1}) scaleY(${isStretching ? 0.92 : 1})`
+      };
+    }
+  } else {
+    lensStyle = {
+      transform: `translate3d(0, calc(${targetIndex} * var(--rail-stride, 52px)), 0) scaleY(${isStretching ? 1.12 : 1}) scaleX(${isStretching ? 0.94 : 1})`
+    };
+  }
+
   return (
     <aside 
       className={`liquid-glass-rail-root ${isVisible ? 'is-visible' : ''}`}
       onMouseLeave={() => setHoveredId(null)}
       aria-label="Liquid Glass Section Navigation"
     >
-      <div className="liquid-glass-rail-container">
+      <div 
+        ref={containerRef}
+        className={`liquid-glass-rail-container ${isDragging ? 'is-touch-dragging' : ''}`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerCancel}
+      >
         {/* Central Connecting Axis & Node Dots */}
         <div className="rail-connecting-axis">
-          {navigationItems.map((item) => (
-            <span 
-              key={`dot-${item.id}`} 
-              className={`axis-node-dot ${activeSection === item.id ? 'is-active-dot' : ''}`} 
-            />
-          ))}
+          {navigationItems.map((item, idx) => {
+            const isDotActive = isDragging 
+              ? Math.round(dragFloatIndex) === idx
+              : activeSection === item.id;
+            return (
+              <span 
+                key={`dot-${item.id}`} 
+                className={`axis-node-dot ${isDotActive ? 'is-active-dot' : ''}`} 
+              />
+            );
+          })}
         </div>
 
         {/* Single Sliding Liquid Glass Lens Highlight */}
         <div 
-          className={`liquid-glass-lens ${isStretching ? 'is-morphing' : ''}`}
-          style={{
-            transform: isMobile
-              ? `translate3d(calc(${targetIndex} * 100%), 0, 0) scaleX(${isStretching ? 1.14 : 1}) scaleY(${isStretching ? 0.92 : 1})`
-              : `translate3d(0, calc(${targetIndex} * var(--rail-stride, 52px)), 0) scaleY(${isStretching ? 1.12 : 1}) scaleX(${isStretching ? 0.94 : 1})`
-          }}
+          className={`liquid-glass-lens ${isStretching ? 'is-morphing' : ''} ${isDragging ? 'is-dragging' : ''}`}
+          style={lensStyle}
         />
 
         {/* 8 Navigation Items */}
         <div className="rail-items-stack">
-          {navigationItems.map((item) => {
+          {navigationItems.map((item, idx) => {
             const isActive = activeSection === item.id;
             const isHovered = hoveredId === item.id;
+
+            // Calculate Magnification scale on mobile during drag or active
+            let magnifyScale = 1;
+            if (isMobile) {
+              if (isDragging) {
+                const dist = Math.abs(idx - dragFloatIndex);
+                if (dist < 1.0) {
+                  magnifyScale = 1 + 0.28 * (1 - dist);
+                }
+              } else if (isActive) {
+                magnifyScale = 1.08;
+              }
+            }
+
             return (
               <div 
                 key={item.id} 
                 className="rail-item-wrapper"
                 onMouseEnter={() => setHoveredId(item.id)}
               >
-                {/* Minimal Glass Tooltip (Visible on Hover) */}
+                {/* Minimal Glass Tooltip (Visible on Hover for desktop) */}
                 <div className={`glass-rail-tooltip ${isHovered ? 'is-tooltip-open' : ''}`}>
                   <span className="tooltip-num">{item.number}</span>
                   <span className="tooltip-title">{item.title}</span>
@@ -133,8 +259,9 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
                 {/* Glass Icon Button */}
                 <button
                   onClick={() => scrollTo(item.id)}
-                  className={`rail-icon-btn ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''}`}
+                  className={`rail-icon-btn ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''} ${isMobile && magnifyScale > 1 ? 'is-magnified' : ''}`}
                   aria-label={`Scroll to ${item.title}`}
+                  style={isMobile && magnifyScale > 1 ? { transform: `scale(${magnifyScale})` } : undefined}
                 >
                   {navIcons[item.id]}
                   {isActive && <span className="active-orange-indicator" />}

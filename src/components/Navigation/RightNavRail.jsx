@@ -67,6 +67,11 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
   const [dragX, setDragX] = useState(0);
   const [dragFloatIndex, setDragFloatIndex] = useState(0);
 
+  // Desktop Hover Tracking State
+  const [isDesktopHovering, setIsDesktopHovering] = useState(false);
+  const [desktopHoverY, setDesktopHoverY] = useState(0);
+  const [desktopHoverFloatIndex, setDesktopHoverFloatIndex] = useState(0);
+
   const containerRef = useRef(null);
   const prevIndexRef = useRef(0);
   const stretchTimerRef = useRef(null);
@@ -98,6 +103,49 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
       }, 350);
     }
   }, [targetIndex]);
+
+  // Handle Desktop Mouse Move
+  const handleMouseMove = (e) => {
+    if (isMobile || !containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const topPadding = 10;
+    const lensHeight = 44;
+    const stride = 52; // 44px height + 8px gap
+    const maxOffset = stride * 7;
+
+    const rawY = e.clientY - rect.top - topPadding - (lensHeight / 2);
+    const clampedY = Math.max(0, Math.min(maxOffset, rawY));
+    const floatIdx = clampedY / stride;
+    const nearestIdx = Math.max(0, Math.min(7, Math.round(clampedY / stride)));
+
+    setDesktopHoverY(clampedY);
+    setDesktopHoverFloatIndex(floatIdx);
+    setIsDesktopHovering(true);
+
+    const targetItem = navigationItems[nearestIdx];
+    if (targetItem && targetItem.id !== hoveredId) {
+      setHoveredId(targetItem.id);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      setIsDesktopHovering(false);
+      setHoveredId(null);
+    }
+  };
+
+  const handleDesktopContainerClick = (e) => {
+    if (isMobile) return;
+    
+    const stride = 52;
+    const nearestIdx = Math.max(0, Math.min(7, Math.round(desktopHoverY / stride)));
+    const targetItem = navigationItems[nearestIdx];
+    if (targetItem) {
+      scrollTo(targetItem.id);
+    }
+  };
 
   // Handle Mobile Pointer Dragging
   const handlePointerDown = (e) => {
@@ -185,20 +233,29 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
       };
     }
   } else {
-    lensStyle = {
-      transform: `translate3d(0, calc(${targetIndex} * var(--rail-stride, 52px)), 0) scaleY(${isStretching ? 1.12 : 1}) scaleX(${isStretching ? 0.94 : 1})`
-    };
+    if (isDesktopHovering) {
+      lensStyle = {
+        transform: `translate3d(0, ${desktopHoverY}px, 0) scaleY(1.04) scaleX(0.96)`,
+        transition: 'transform 0.08s cubic-bezier(0.1, 1, 0.1, 1)'
+      };
+    } else {
+      lensStyle = {
+        transform: `translate3d(0, calc(${targetIndex} * var(--rail-stride, 52px)), 0) scaleY(${isStretching ? 1.12 : 1}) scaleX(${isStretching ? 0.94 : 1})`
+      };
+    }
   }
 
   return (
     <aside 
       className={`liquid-glass-rail-root ${isVisible ? 'is-visible' : ''}`}
-      onMouseLeave={() => setHoveredId(null)}
+      onMouseLeave={handleMouseLeave}
       aria-label="Liquid Glass Section Navigation"
     >
       <div 
         ref={containerRef}
-        className={`liquid-glass-rail-container ${isDragging ? 'is-touch-dragging' : ''}`}
+        className={`liquid-glass-rail-container ${isDragging ? 'is-touch-dragging' : ''} ${isDesktopHovering ? 'is-desktop-hovering' : ''}`}
+        onMouseMove={handleMouseMove}
+        onClick={handleDesktopContainerClick}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -207,9 +264,9 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
         {/* Central Connecting Axis & Node Dots */}
         <div className="rail-connecting-axis">
           {navigationItems.map((item, idx) => {
-            const isDotActive = isDragging 
-              ? Math.round(dragFloatIndex) === idx
-              : activeSection === item.id;
+            const isDotActive = isMobile 
+              ? (isDragging ? Math.round(dragFloatIndex) === idx : activeSection === item.id)
+              : (isDesktopHovering ? Math.round(desktopHoverFloatIndex) === idx : activeSection === item.id);
             return (
               <span 
                 key={`dot-${item.id}`} 
@@ -221,7 +278,7 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
 
         {/* Single Sliding Liquid Glass Lens Highlight */}
         <div 
-          className={`liquid-glass-lens ${isStretching ? 'is-morphing' : ''} ${isDragging ? 'is-dragging' : ''}`}
+          className={`liquid-glass-lens ${isStretching ? 'is-morphing' : ''} ${isDragging ? 'is-dragging' : ''} ${isDesktopHovering ? 'is-desktop-hover' : ''}`}
           style={lensStyle}
         />
 
@@ -231,7 +288,7 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
             const isActive = activeSection === item.id;
             const isHovered = hoveredId === item.id;
 
-            // Calculate Magnification scale on mobile during drag or active
+            // Calculate Magnification scale
             let magnifyScale = 1;
             if (isMobile) {
               if (isDragging) {
@@ -242,13 +299,21 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
               } else if (isActive) {
                 magnifyScale = 1.08;
               }
+            } else {
+              if (isDesktopHovering) {
+                const dist = Math.abs(idx - desktopHoverFloatIndex);
+                if (dist < 1.0) {
+                  magnifyScale = 1 + 0.24 * (1 - dist);
+                }
+              } else if (isActive) {
+                magnifyScale = 1.08;
+              }
             }
 
             return (
               <div 
                 key={item.id} 
                 className="rail-item-wrapper"
-                onMouseEnter={() => setHoveredId(item.id)}
               >
                 {/* Minimal Glass Tooltip (Visible on Hover for desktop) */}
                 <div className={`glass-rail-tooltip ${isHovered ? 'is-tooltip-open' : ''}`}>
@@ -258,10 +323,13 @@ export default function RightNavRail({ activeSection, scrollTo, isVisible }) {
 
                 {/* Glass Icon Button */}
                 <button
-                  onClick={() => scrollTo(item.id)}
-                  className={`rail-icon-btn ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''} ${isMobile && magnifyScale > 1 ? 'is-magnified' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    scrollTo(item.id);
+                  }}
+                  className={`rail-icon-btn ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''} ${magnifyScale > 1 ? 'is-magnified' : ''}`}
                   aria-label={`Scroll to ${item.title}`}
-                  style={isMobile && magnifyScale > 1 ? { transform: `scale(${magnifyScale})` } : undefined}
+                  style={magnifyScale > 1 ? { transform: `scale(${magnifyScale})` } : undefined}
                 >
                   {navIcons[item.id]}
                   {isActive && <span className="active-orange-indicator" />}
